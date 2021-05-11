@@ -4,7 +4,7 @@ class App extends React.Component {
     title: '',
     image: '',
     type: '',
-    ingredients: {},
+    ingredients: [],
     methods: [],
     duration: '',
     recipes: [],
@@ -24,7 +24,7 @@ class App extends React.Component {
         title: '',
         image: '',
         type: '',
-        ingredients: {},
+        ingredients: [],
         methods: [],
         duration: '',
       })
@@ -40,7 +40,7 @@ class App extends React.Component {
         title: '',
         image: '',
         type: '',
-        ingredients: {},
+        ingredients: [],
         methods: [],
         duration: '',
       })
@@ -91,9 +91,13 @@ class App extends React.Component {
           <div className="row">
             <div className="col">
               <label className="form-label" htmlFor="type">Type of Recipe</label>
-              <select className="form-control" type="text" id="tags"
+              <select className="form-select" type="text" id="type"
               onChange={this.handleChange} value={this.state.type}>
-
+                <option defaultValue>Choose Recipe Type...</option>
+                <option value="main">Main</option>
+                <option value="side">Side</option>
+                <option value="dessert">Dessert</option>
+                <option value="snack">Snack</option>
               </select>
             </div>
           </div>
@@ -142,14 +146,32 @@ class App extends React.Component {
 
               <li key={recipe._id}>
 
-
                 <h3>{recipe.title}</h3>
                 <h4>{recipe.duration}</h4>
                 <img src={recipe.image} alt={recipe.title} />
                 <h4>{recipe.tags}</h4>
-                <h4>{recipe.ingredients}</h4>
-                <h4>{recipe.methods}</h4>
 
+                <h4>Ingredients</h4>
+                <ul>
+                  {recipe.ingredients.map((ingredient) => {
+                    return (
+                      <li>
+                        {ingredient}
+                      </li>
+                    )
+                  })}
+                </ul>
+
+                <h4>Method</h4>
+                <ul>
+                  {recipe.methods.map((method) => {
+                    return (
+                      <li>
+                        {method}
+                      </li>
+                    )
+                  })}
+                </ul>
 
                 <details>
 
