@@ -4,10 +4,20 @@
 const express = require('express');
 const recipes = express.Router();
 const Recipe = require('../models/recipe.js');
+const recipesSeed = require('../models/recipes_seed.js')
 
 ///////////////////////
 // Routes
 ///////////////////////
+
+recipes.get('/seed', (req, res) => {
+    Recipe.insertMany(recipesSeed, (err, manyRecipes) => {
+        if (err) {
+            res.send(err);
+        }
+        res.redirect('/recipes');
+    });
+});
 
 recipes.put('/:id', (req, res) => {
     Recipe.findByIdAndUpdate(
