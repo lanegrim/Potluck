@@ -3,9 +3,9 @@ class App extends React.Component {
   state = {
     title: '',
     image: '',
-    tags: '',
-    ingredients: '',
-    methods: '',
+    type: '',
+    ingredients: {},
+    methods: [],
     duration: '',
     recipes: [],
 
@@ -23,9 +23,9 @@ class App extends React.Component {
         recipes: response.data,
         title: '',
         image: '',
-        tags: '',
-        ingredients: '',
-        methods: '',
+        type: '',
+        ingredients: {},
+        methods: [],
         duration: '',
       })
     })
@@ -39,9 +39,9 @@ class App extends React.Component {
         recipes: response.data,
         title: '',
         image: '',
-        tags: '',
-        ingredients: '',
-        methods: '',
+        type: '',
+        ingredients: {},
+        methods: [],
         duration: '',
       })
     })
@@ -90,9 +90,11 @@ class App extends React.Component {
 
           <div className="row">
             <div className="col">
-              <label className="form-label" htmlFor="tags">Tags</label>
-              <input className="form-control" type="text" id="tags"
-              onChange={this.handleChange} value={this.state.tags} />
+              <label className="form-label" htmlFor="type">Type of Recipe</label>
+              <select className="form-control" type="text" id="tags"
+              onChange={this.handleChange} value={this.state.type}>
+
+              </select>
             </div>
           </div>
 
