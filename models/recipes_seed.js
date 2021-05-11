@@ -17,7 +17,7 @@ module.exports = [
             "In a blender or food processor, pulse the tomatoes, green onions, jalapeno peppers, and cilantro to desired consistency.",
             "Transfer to a bowl, and mix in the lime juice, hot pepper sauce, black pepper, garlic powder, and salt."
         ],
-        type: "snack",
+        type: "Snack",
         duration: "15 mins",
     },
 ]
