@@ -163,7 +163,7 @@ class App extends React.Component {
                 </ul>
 
                 <h4>Method</h4>
-                <ul>
+                <ol>
                   {recipe.methods.map((method) => {
                     return (
                       <li>
@@ -171,7 +171,7 @@ class App extends React.Component {
                       </li>
                     )
                   })}
-                </ul>
+                </ol>
 
                 <details>
 
