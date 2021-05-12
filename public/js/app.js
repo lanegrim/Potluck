@@ -110,111 +110,20 @@ class App extends React.Component {
 
       <div>
 
-
-        <br />
-        <h2>ADD RECIPE</h2>
-        <br />
-
-        <form className="addRecipe" onSubmit={this.handleSubmit}>
-
-          <div className="row">
-            <div className="col-4">
-              <label className="form-label" htmlFor="title">Title</label>
-              <input className="form-control" type="text" id="title"
-                onChange={this.handleChange} value={this.state.title} />
-            </div>
-            <div className="col-4">
-              <label className="form-label" htmlFor="duration">Duration</label>
-              <input className="form-control" type="text" id="duration"
-                onChange={this.handleChange} value={this.state.duration} />
-            </div>
-            <div className="col-4">
-              <label className="form-label" htmlFor="type">Type of Recipe</label>
-              <select className="form-select" type="text" id="type"
-                onChange={this.handleChange} value={this.state.type}>
-                <option defaultValue>Choose Recipe Type...</option>
-                <option value="main">Main</option>
-                <option value="side">Side</option>
-                <option value="dessert">Dessert</option>
-                <option value="snack">Snack</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col">
-              <label className="form-label" htmlFor="image">Image</label>
-              <input className="form-control" type="text" id="image"
-                onChange={this.handleChange} value={this.state.image} />
-            </div>
-          </div>
-
-
-
-          <div className="row">
-            <div className="col-6">
-              <label className="form-label" htmlFor="ingredients">Ingredients</label>
-              {this.state.ingredients.map((value, index) => {
-                let ingredientId = `ingredient-${index}`
-                return (
-                  <input
-                    className="form-control ingredients"
-                    type="text"
-                    data-id={index}
-                    id={ingredientId}
-                    onChange={this.handleChange}
-                    defaultValue={this.state.ingredients[index]} />
-                )
-              })}
-            </div>
-          </div>
-
-          <br />
-          <div className="row">
-            <div>
-              <button onClick={this.addIngredient} className="btn btn-info">Add Ingredient</button>
-              <button onClick={this.removeIngredient} className="btn btn-warning">Remove Ingredient</button>
-            </div>
-          </div>
-          <br />
-
-          <div className="row">
-            <div className="col-8">
-              <label className="form-label" htmlFor="methods">Methods</label>
-              {this.state.methods.map((value, index) => {
-                let methodId = `method-${index}`
-                return (
-                  <input
-                    className="form-control methods"
-                    type="text"
-                    data-id={index}
-                    id={methodId}
-                    onChange={this.handleChange}
-                    defaultValue={this.state.methods[index]} />
-                )
-              })}
-            </div>
-          </div>
-
-          <br />
-          <div className="row">
-            <div>
-              <button onClick={this.addMethod} className="btn btn-info">Add Step</button>
-              <button onClick={this.removeMethod} className="btn btn-warning">Remove Step</button>
-            </div>
-          </div>
-
-
-
-          <br />
-          <div className="row">
-            <div className="col">
-              <input className="btn btn-primary" type="submit" value="Add Recipe" />
-            </div>
-          </div>
-
-        </form>
-
+        <Create
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+        title={this.state.title}
+        duration={this.state.duration}
+        type={this.state.type}
+        image={this.state.image}
+        ingredients={this.state.ingredients}
+        addIngredient={this.addIngredient}
+        removeIngredient={this.removeIngredient}
+        methods={this.state.methods}
+        addMethod={this.addMethod}
+        removeMethod={this.removeMethod}
+        ></Create>
 
         <br />
 
@@ -227,9 +136,9 @@ class App extends React.Component {
               <li key={recipe._id}>
 
                 <h3>{recipe.title}</h3>
+                <h4>{recipe.type}</h4>
                 <h4>{recipe.duration}</h4>
                 <img src={recipe.image} alt={recipe.title} />
-                <h4>{recipe.tags}</h4>
 
                 <h4>Ingredients</h4>
                 <ul>
@@ -253,74 +162,17 @@ class App extends React.Component {
                   })}
                 </ol>
 
-                <details>
+                <Edit
+                handleSubmit={this.handleSubmit}
+                handleChange={this.handleChange}
+                updateRecipe={this.updateRecipe}
+                _id={recipe._id}
+                ></Edit>
 
-                  <summary>Edit your recipe</summary>
-
-                  <form className="editRecipe" id={recipe._id} onSubmit={this.updateRecipe}>
-
-                    <div className="row">
-                      <div className="col-6">
-                        <label className="form-label" htmlFor="title">Title</label>
-                        <input className="form-control" type="text" id="title"
-                          onChange={this.handleChange} />
-                      </div>
-                      <div className="col-6">
-                        <label className="form-label" htmlFor="duration">Duration</label>
-                        <input className="form-control" type="text" id="duration"
-                          onChange={this.handleChange} />
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col">
-                        <label className="form-label" htmlFor="tags">Tags</label>
-                        <input className="form-control" type="text" id="tags"
-                          onChange={this.handleChange} />
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col">
-                        <label className="form-label" htmlFor="image">Image</label>
-                        <input className="form-control" type="text" id="image"
-                          onChange={this.handleChange} />
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col">
-                        <label className="form-label" htmlFor="ingredients">Ingredients</label>
-                        <input className="form-control" type="text" id="ingredients"
-                          onChange={this.handleChange} />
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col">
-                        <label className="form-label" htmlFor="methods">Methods</label>
-                        <input className="form-control" type="text" id="methods"
-                          onChange={this.handleChange} />
-                      </div>
-                    </div>
-
-                    <br />
-                    <div className="row">
-                      <div className="col">
-                        <input className="btn btn-success" type="submit" value="Update Recipe" />
-                      </div>
-                    </div>
-
-                  </form>
-
-                </details>
-
-
-                <br />
-                <button className="btn btn-danger" onClick={this.deleteRecipe} value={recipe._id}>
-                  Delete Recipe
-                </button>
-
+                <Delete
+                deleteRecipe={this.deleteRecipe}
+                _id={recipe._id}
+                ></Delete>
 
               </li>
             )
