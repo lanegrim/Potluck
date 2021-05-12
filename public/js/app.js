@@ -173,7 +173,6 @@ class App extends React.Component {
                 methods={this.state.methods}
                 addMethod={this.addMethod}
                 removeMethod={this.removeMethod}
-
                 ></Edit>
 
                 <Delete
