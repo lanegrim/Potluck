@@ -12,12 +12,13 @@ class App extends React.Component {
   }
 
   handleChange = (event) => {
-    if(event.target.className === 'ingredients') {
-      let ingredients = this.state.ingredients
+    if (event.target.className.includes('ingredients')) {
+      let ingredients = [...this.state.ingredients]
+      console.log(ingredients);
       ingredients[event.target.dataset.id] = event.target.value
-      this.setState({ingredients}, () => console.log(this.state.ingredients))
+      this.setState({ ingredients }, () => console.log(this.state.ingredients))
     } else {
-      this.setState({ [event.target.id]: event.target.value})
+      this.setState({ [event.target.id]: event.target.value })
     }
   }
 
@@ -41,7 +42,7 @@ class App extends React.Component {
     // console.log('added')
     this.setState((prevState) => ({
       // console.log(prevState)
-      ingredients:[...prevState.ingredients]
+      ingredients: [...prevState.ingredients, '']
 
     }, console.log(this.state.ingredients)))
   }
@@ -90,9 +91,9 @@ class App extends React.Component {
       <div>
 
 
-        <br/>
+        <br />
         <h2>ADD RECIPE</h2>
-        <br/>
+        <br />
 
         <form className="addRecipe" onSubmit={this.handleSubmit}>
 
@@ -100,12 +101,12 @@ class App extends React.Component {
             <div className="col-6">
               <label className="form-label" htmlFor="title">Title</label>
               <input className="form-control" type="text" id="title"
-              onChange={this.handleChange} value={this.state.title} />
+                onChange={this.handleChange} value={this.state.title} />
             </div>
             <div className="col-6">
               <label className="form-label" htmlFor="duration">Duration</label>
               <input className="form-control" type="text" id="duration"
-              onChange={this.handleChange} value={this.state.duration} />
+                onChange={this.handleChange} value={this.state.duration} />
             </div>
           </div>
 
@@ -113,7 +114,7 @@ class App extends React.Component {
             <div className="col">
               <label className="form-label" htmlFor="type">Type of Recipe</label>
               <select className="form-select" type="text" id="type"
-              onChange={this.handleChange} value={this.state.type}>
+                onChange={this.handleChange} value={this.state.type}>
                 <option defaultValue>Choose Recipe Type...</option>
                 <option value="main">Main</option>
                 <option value="side">Side</option>
@@ -127,7 +128,7 @@ class App extends React.Component {
             <div className="col">
               <label className="form-label" htmlFor="image">Image</label>
               <input className="form-control" type="text" id="image"
-              onChange={this.handleChange} value={this.state.image} />
+                onChange={this.handleChange} value={this.state.image} />
             </div>
           </div>
 
@@ -140,40 +141,41 @@ class App extends React.Component {
                 let ingredientId = `ingredient-${index}`
                 return (
                   <input
-                  className="form-control ingredients"
-                  type="text"
-                  id={index}
-                  onChange={this.handleChange}
-                  value={this.state.ingredients[index]} />
+                    className="form-control ingredients"
+                    type="text"
+                    data-id={index}
+                    id={ingredientId}
+                    onChange={this.handleChange}
+                    defaultValue={this.state.ingredients[index]} />
                 )
               })}
             </div>
           </div>
 
-          <br/>
+          <br />
           <div className="row">
             <div className="col">
               <button onClick={this.addIngredient} className="btn btn-info">Add Ingredient</button>
             </div>
           </div>
-          <br/>
+          <br />
 
           <div className="row">
             <div className="col">
               <label className="form-label" htmlFor="methods">Methods</label>
               <input className="form-control" type="text" id="methods"
-              onChange={this.handleChange} value={this.state.methods} />
+                onChange={this.handleChange} value={this.state.methods} />
             </div>
           </div>
-          <br/>
+          <br />
           <div className="row">
             <div className="col">
               <button className="btn btn-info">Add Step</button>
             </div>
           </div>
-          <br/>
+          <br />
 
-          <br/>
+          <br />
           <div className="row">
             <div className="col">
               <input className="btn btn-primary" type="submit" value="Add Recipe" />
@@ -183,7 +185,7 @@ class App extends React.Component {
         </form>
 
 
-        <br/>
+        <br />
 
         <h2>ALL RECIPES</h2>
 
@@ -230,12 +232,12 @@ class App extends React.Component {
                       <div className="col-6">
                         <label className="form-label" htmlFor="title">Title</label>
                         <input className="form-control" type="text" id="title"
-                        onChange={this.handleChange} />
+                          onChange={this.handleChange} />
                       </div>
                       <div className="col-6">
                         <label className="form-label" htmlFor="duration">Duration</label>
                         <input className="form-control" type="text" id="duration"
-                        onChange={this.handleChange} />
+                          onChange={this.handleChange} />
                       </div>
                     </div>
 
@@ -243,7 +245,7 @@ class App extends React.Component {
                       <div className="col">
                         <label className="form-label" htmlFor="tags">Tags</label>
                         <input className="form-control" type="text" id="tags"
-                        onChange={this.handleChange} />
+                          onChange={this.handleChange} />
                       </div>
                     </div>
 
@@ -251,7 +253,7 @@ class App extends React.Component {
                       <div className="col">
                         <label className="form-label" htmlFor="image">Image</label>
                         <input className="form-control" type="text" id="image"
-                        onChange={this.handleChange} />
+                          onChange={this.handleChange} />
                       </div>
                     </div>
 
@@ -259,7 +261,7 @@ class App extends React.Component {
                       <div className="col">
                         <label className="form-label" htmlFor="ingredients">Ingredients</label>
                         <input className="form-control" type="text" id="ingredients"
-                        onChange={this.handleChange} />
+                          onChange={this.handleChange} />
                       </div>
                     </div>
 
@@ -267,11 +269,11 @@ class App extends React.Component {
                       <div className="col">
                         <label className="form-label" htmlFor="methods">Methods</label>
                         <input className="form-control" type="text" id="methods"
-                        onChange={this.handleChange} />
+                          onChange={this.handleChange} />
                       </div>
                     </div>
 
-                    <br/>
+                    <br />
                     <div className="row">
                       <div className="col">
                         <input className="btn btn-success" type="submit" value="Update Recipe" />
@@ -283,7 +285,7 @@ class App extends React.Component {
                 </details>
 
 
-                <br/>
+                <br />
                 <button className="btn btn-danger" onClick={this.deleteRecipe} value={recipe._id}>
                   Delete Recipe
                 </button>
