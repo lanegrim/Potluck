@@ -8,6 +8,7 @@ class App extends React.Component {
     methods: ['', '', ''],
     duration: '',
     recipes: [],
+    showForm: false,
 
   }
 
@@ -73,6 +74,12 @@ class App extends React.Component {
     })
   }
 
+  showForm = (event) => {
+    this.setState({
+      showForm: !this.state.showForm
+    })
+  }
+
   updateRecipe = (event) => {
     event.preventDefault()
     const id = event.target.id
@@ -108,8 +115,10 @@ class App extends React.Component {
   render = () => {
     return (
 
-      <div>
+        <div>
 
+        <button onClick={this.showForm} className="btn btn-primary">Add Recipe</button>
+        {this.state.showForm ?
         <Create
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
@@ -124,8 +133,7 @@ class App extends React.Component {
         addMethod={this.addMethod}
         removeMethod={this.removeMethod}
         ></Create>
-
-        <br />
+        : null}
 
         <h2>ALL RECIPES</h2>
 
