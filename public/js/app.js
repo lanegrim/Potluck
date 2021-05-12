@@ -9,6 +9,7 @@ class App extends React.Component {
     duration: '',
     recipes: [],
     showForm: false,
+    showRecipe: false,
 
   }
 
@@ -148,27 +149,29 @@ class App extends React.Component {
                 <h4>Preperation Time: <b>{recipe.duration}</b></h4>
                 <img src={recipe.image} alt={recipe.title} />
 
-                <h4>Ingredients</h4>
-                <ul>
-                  {recipe.ingredients.map((ingredient) => {
-                    return (
-                      <li key={ingredient}>
-                        {ingredient}
-                      </li>
-                    )
-                  })}
-                </ul>
+                <button className="btn btn-outline-primary">Show Recipe</button>
 
-                <h4>Method</h4>
-                <ol>
-                  {recipe.methods.map((method) => {
-                    return (
-                      <li key={method}>
-                        {method}
-                      </li>
-                    )
-                  })}
-                </ol>
+                  <h4>Ingredients</h4>
+                  <ul>
+                    {recipe.ingredients.map((ingredient) => {
+                      return (
+                        <li key={ingredient}>
+                          {ingredient}
+                        </li>
+                      )
+                    })}
+                  </ul>
+
+                  <h4>Method</h4>
+                  <ol>
+                    {recipe.methods.map((method) => {
+                      return (
+                        <li key={method}>
+                          {method}
+                        </li>
+                      )
+                    })}
+                  </ol>
 
                 <Edit
                 handleSubmit={this.handleSubmit}
