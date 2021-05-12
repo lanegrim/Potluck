@@ -2,8 +2,9 @@ class Create extends React.Component {
   render = () => {
     return (
       <div>
+
       <br />
-      <h2>ADD RECIPE</h2>
+      <h2>NEW RECIPE</h2>
       <br />
 
       <form className="addRecipe" onSubmit={this.props.handleSubmit}>
@@ -49,6 +50,7 @@ class Create extends React.Component {
               let ingredientId = `ingredient-${index}`
               return (
                 <input
+                  key={index}
                   className="form-control ingredients"
                   type="text"
                   data-id={index}
@@ -76,6 +78,7 @@ class Create extends React.Component {
               let methodId = `method-${index}`
               return (
                 <input
+                  key={index}
                   className="form-control methods"
                   type="text"
                   data-id={index}
@@ -98,7 +101,7 @@ class Create extends React.Component {
         <br />
         <div className="row">
           <div className="col">
-            <input className="btn btn-primary" type="submit" value="Add Recipe" />
+            <input className="btn btn-success" type="submit" value="Submit Recipe" />
           </div>
         </div>
 
