@@ -9,8 +9,6 @@ class App extends React.Component {
     duration: '',
     recipes: [],
     showForm: false,
-    showRecipe: false,
-
   }
 
   handleChange = (event) => {
@@ -29,6 +27,7 @@ class App extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    event.target.reset()
     axios.post('/recipes', this.state).then((response) => {
       // console.log(response)
       this.setState({
@@ -83,6 +82,7 @@ class App extends React.Component {
 
   updateRecipe = (event) => {
     event.preventDefault()
+    event.target.reset()
     const id = event.target.id
     axios.put('/recipes/' + id, this.state).then((response) => {
       this.setState({
