@@ -136,8 +136,8 @@ class App extends React.Component {
               <li key={recipe._id}>
 
                 <h3>{recipe.title}</h3>
-                <h4>{recipe.type}</h4>
-                <h4>{recipe.duration}</h4>
+                <h4>Recipe Type: <b>{recipe.type}</b></h4>
+                <h4>Preperation Time: <b>{recipe.duration}</b></h4>
                 <img src={recipe.image} alt={recipe.title} />
 
                 <h4>Ingredients</h4>
@@ -165,8 +165,15 @@ class App extends React.Component {
                 <Edit
                 handleSubmit={this.handleSubmit}
                 handleChange={this.handleChange}
-                updateRecipe={this.updateRecipe}
                 _id={recipe._id}
+                ingredients={this.state.ingredients}
+                updateRecipe={this.updateRecipe}
+                addIngredient={this.addIngredient}
+                removeIngredient={this.removeIngredient}
+                methods={this.state.methods}
+                addMethod={this.addMethod}
+                removeMethod={this.removeMethod}
+
                 ></Edit>
 
                 <Delete

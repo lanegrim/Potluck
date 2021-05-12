@@ -24,10 +24,10 @@ class Create extends React.Component {
             <select className="form-select" type="text" id="type"
               onChange={this.props.handleChange} value={this.props.type}>
               <option defaultValue>Choose Recipe Type...</option>
-              <option value="main">Main</option>
-              <option value="side">Side</option>
-              <option value="dessert">Dessert</option>
-              <option value="snack">Snack</option>
+              <option value="Main">Main</option>
+              <option value="Side">Side</option>
+              <option value="Dessert">Dessert</option>
+              <option value="Snack">Snack</option>
             </select>
           </div>
         </div>
@@ -94,8 +94,6 @@ class Create extends React.Component {
             <button onClick={this.props.removeMethod} className="btn btn-warning">Remove Step</button>
           </div>
         </div>
-
-
 
         <br />
         <div className="row">
