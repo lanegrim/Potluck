@@ -41,6 +41,25 @@ class Show extends React.Component {
                             )
                         })}
                     </ol>
+
+                    <Edit
+                    handleSubmit={this.props.handleSubmit}
+                    handleChange={this.props.handleChange}
+                    _id={this.props.recipe._id}
+                    ingredients={this.props.ingredients}
+                    updateRecipe={this.props.updateRecipe}
+                    addIngredient={this.props.addIngredient}
+                    removeIngredient={this.props.removeIngredient}
+                    methods={this.props.methods}
+                    addMethod={this.props.addMethod}
+                    removeMethod={this.props.removeMethod}
+                    ></Edit>
+
+                    <Delete
+                      deleteRecipe={this.props.deleteRecipe}
+                      _id={this.props.recipe._id}
+                    ></Delete>
+
                 </div>
             )
         } else {

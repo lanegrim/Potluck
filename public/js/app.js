@@ -146,12 +146,8 @@ class App extends React.Component {
 
                 <Show
                   recipe={recipe}
-                ></Show>
-
-                <Edit
                   handleSubmit={this.handleSubmit}
                   handleChange={this.handleChange}
-                  _id={recipe._id}
                   ingredients={this.state.ingredients}
                   updateRecipe={this.updateRecipe}
                   addIngredient={this.addIngredient}
@@ -159,12 +155,8 @@ class App extends React.Component {
                   methods={this.state.methods}
                   addMethod={this.addMethod}
                   removeMethod={this.removeMethod}
-                ></Edit>
-
-                <Delete
                   deleteRecipe={this.deleteRecipe}
-                  _id={recipe._id}
-                ></Delete>
+                ></Show>
 
               </li>
             )
