@@ -14,9 +14,12 @@ class App extends React.Component {
   handleChange = (event) => {
     if (event.target.className.includes('ingredients')) {
       let ingredients = [...this.state.ingredients]
-      console.log(ingredients);
       ingredients[event.target.dataset.id] = event.target.value
       this.setState({ ingredients }, () => console.log(this.state.ingredients))
+    } else if (event.target.className.includes('methods')) {
+      let methods = [...this.state.methods]
+      methods[event.target.dataset.id] = event.target.value
+      this.setState({ methods }, () => console.log(this.state.methods))
     } else {
       this.setState({ [event.target.id]: event.target.value })
     }
@@ -55,8 +58,18 @@ class App extends React.Component {
   }
 
   addMethod = (event) => {
-    this.setState(() => {
+    event.preventDefault()
+    this.setState((prevState) => ({
+      methods: [...prevState.methods, '']
+    }))
+  }
 
+  removeMethod = (event) => {
+    event.preventDefault()
+    let reducedMethods = this.state.methods
+    reducedMethods.pop()
+    this.setState({
+      methods: reducedMethods
     })
   }
 
@@ -177,14 +190,32 @@ class App extends React.Component {
           <div className="row">
             <div className="col">
               <label className="form-label" htmlFor="methods">Methods</label>
-              <input className="form-control" type="text" id="methods"
-                onChange={this.handleChange} value={this.state.methods} />
+              {this.state.methods.map((value, index) => {
+                let methodId = `method-${index}`
+                return (
+                  <input
+                    className="form-control methods"
+                    type="text"
+                    data-id={index}
+                    id={methodId}
+                    onChange={this.handleChange}
+                    defaultValue={this.state.methods[index]} />
+                )
+              })}
             </div>
           </div>
+
           <br />
           <div className="row">
             <div className="col">
-              <button className="btn btn-info">Add Step</button>
+              <button onClick={this.addMethod} className="btn btn-info">Add Method</button>
+            </div>
+          </div>
+          <br />
+
+          <div className="row">
+            <div className="col">
+              <button onClick={this.removeMethod} className="btn btn-warning">Remove Method</button>
             </div>
           </div>
           <br />
