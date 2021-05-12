@@ -47,6 +47,7 @@ class Edit extends React.Component {
                 let ingredientId = `ingredient-${index}`
                 return (
                   <input
+                    key={index}
                     className="form-control ingredients"
                     type="text"
                     data-id={index}
@@ -74,6 +75,7 @@ class Edit extends React.Component {
                 let methodId = `method-${index}`
                 return (
                   <input
+                    key={index}
                     className="form-control methods"
                     type="text"
                     data-id={index}

@@ -144,7 +144,7 @@ class App extends React.Component {
                 <ul>
                   {recipe.ingredients.map((ingredient) => {
                     return (
-                      <li>
+                      <li key={ingredient}>
                         {ingredient}
                       </li>
                     )
@@ -155,7 +155,7 @@ class App extends React.Component {
                 <ol>
                   {recipe.methods.map((method) => {
                     return (
-                      <li>
+                      <li key={method}>
                         {method}
                       </li>
                     )
