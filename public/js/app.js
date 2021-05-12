@@ -116,25 +116,25 @@ class App extends React.Component {
   render = () => {
     return (
 
-        <div>
+      <div>
 
         <button onClick={this.showForm} className="btn btn-primary">Add Recipe</button>
         {this.state.showForm ?
-        <Create
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-        title={this.state.title}
-        duration={this.state.duration}
-        type={this.state.type}
-        image={this.state.image}
-        ingredients={this.state.ingredients}
-        addIngredient={this.addIngredient}
-        removeIngredient={this.removeIngredient}
-        methods={this.state.methods}
-        addMethod={this.addMethod}
-        removeMethod={this.removeMethod}
-        ></Create>
-        : null}
+          <Create
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            title={this.state.title}
+            duration={this.state.duration}
+            type={this.state.type}
+            image={this.state.image}
+            ingredients={this.state.ingredients}
+            addIngredient={this.addIngredient}
+            removeIngredient={this.removeIngredient}
+            methods={this.state.methods}
+            addMethod={this.addMethod}
+            removeMethod={this.removeMethod}
+          ></Create>
+          : null}
 
         <h2>ALL RECIPES</h2>
 
@@ -144,51 +144,26 @@ class App extends React.Component {
 
               <li key={recipe._id}>
 
-                <h3>{recipe.title}</h3>
-                <h4>Recipe Type: <b>{recipe.type}</b></h4>
-                <h4>Preperation Time: <b>{recipe.duration}</b></h4>
-                <img src={recipe.image} alt={recipe.title} />
-
-                <button className="btn btn-outline-primary">Show Recipe</button>
-
-                  <h4>Ingredients</h4>
-                  <ul>
-                    {recipe.ingredients.map((ingredient) => {
-                      return (
-                        <li key={ingredient}>
-                          {ingredient}
-                        </li>
-                      )
-                    })}
-                  </ul>
-
-                  <h4>Method</h4>
-                  <ol>
-                    {recipe.methods.map((method) => {
-                      return (
-                        <li key={method}>
-                          {method}
-                        </li>
-                      )
-                    })}
-                  </ol>
+                <Show
+                  recipe={recipe}
+                ></Show>
 
                 <Edit
-                handleSubmit={this.handleSubmit}
-                handleChange={this.handleChange}
-                _id={recipe._id}
-                ingredients={this.state.ingredients}
-                updateRecipe={this.updateRecipe}
-                addIngredient={this.addIngredient}
-                removeIngredient={this.removeIngredient}
-                methods={this.state.methods}
-                addMethod={this.addMethod}
-                removeMethod={this.removeMethod}
+                  handleSubmit={this.handleSubmit}
+                  handleChange={this.handleChange}
+                  _id={recipe._id}
+                  ingredients={this.state.ingredients}
+                  updateRecipe={this.updateRecipe}
+                  addIngredient={this.addIngredient}
+                  removeIngredient={this.removeIngredient}
+                  methods={this.state.methods}
+                  addMethod={this.addMethod}
+                  removeMethod={this.removeMethod}
                 ></Edit>
 
                 <Delete
-                deleteRecipe={this.deleteRecipe}
-                _id={recipe._id}
+                  deleteRecipe={this.deleteRecipe}
+                  _id={recipe._id}
                 ></Delete>
 
               </li>
