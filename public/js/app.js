@@ -5,7 +5,7 @@ class App extends React.Component {
     image: '',
     type: '',
     ingredients: [''],
-    methods: [],
+    methods: [''],
     duration: '',
     recipes: [],
 
@@ -32,19 +32,26 @@ class App extends React.Component {
         image: '',
         type: '',
         ingredients: [''],
-        methods: [],
+        methods: [''],
         duration: '',
       })
     })
   }
 
   addIngredient = (event) => {
-    // console.log('added')
+    event.preventDefault()
     this.setState((prevState) => ({
-      // console.log(prevState)
       ingredients: [...prevState.ingredients, '']
+    }))
+  }
 
-    }, console.log(this.state.ingredients)))
+  removeIngredient = (event) => {
+    event.preventDefault()
+    let reducedIngredients = this.state.ingredients
+    reducedIngredients.pop()
+    this.setState({
+      ingredients: reducedIngredients
+    })
   }
 
   addMethod = (event) => {
@@ -63,7 +70,7 @@ class App extends React.Component {
         image: '',
         type: '',
         ingredients: [''],
-        methods: [],
+        methods: [''],
         duration: '',
       })
     })
@@ -156,6 +163,13 @@ class App extends React.Component {
           <div className="row">
             <div className="col">
               <button onClick={this.addIngredient} className="btn btn-info">Add Ingredient</button>
+            </div>
+          </div>
+          <br />
+
+          <div className="row">
+            <div className="col">
+              <button onClick={this.removeIngredient} className="btn btn-warning">Remove Ingredient</button>
             </div>
           </div>
           <br />
