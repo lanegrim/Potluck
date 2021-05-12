@@ -4,7 +4,7 @@ class App extends React.Component {
     title: '',
     image: '',
     type: '',
-    ingredients: [],
+    ingredients: [''],
     methods: [],
     duration: '',
     recipes: [],
@@ -12,22 +12,43 @@ class App extends React.Component {
   }
 
   handleChange = (event) => {
-    this.setState({ [event.target.id]: event.target.value})
+    if(event.target.className === 'ingredients') {
+      let ingredients = this.state.ingredients
+      ingredients[event.target.dataset.id] = event.target.value
+      this.setState({ingredients}, () => console.log(this.state.ingredients))
+    } else {
+      this.setState({ [event.target.id]: event.target.value})
+    }
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
     axios.post('/recipes', this.state).then((response) => {
-      console.log(response)
+      // console.log(response)
       this.setState({
         recipes: response.data,
         title: '',
         image: '',
         type: '',
-        ingredients: [],
+        ingredients: [''],
         methods: [],
         duration: '',
       })
+    })
+  }
+
+  addIngredient = (event) => {
+    // console.log('added')
+    this.setState((prevState) => ({
+      // console.log(prevState)
+      ingredients:[...prevState.ingredients]
+
+    }, console.log(this.state.ingredients)))
+  }
+
+  addMethod = (event) => {
+    this.setState(() => {
+
     })
   }
 
@@ -40,7 +61,7 @@ class App extends React.Component {
         title: '',
         image: '',
         type: '',
-        ingredients: [],
+        ingredients: [''],
         methods: [],
         duration: '',
       })
@@ -110,13 +131,32 @@ class App extends React.Component {
             </div>
           </div>
 
+
+
           <div className="row">
             <div className="col">
               <label className="form-label" htmlFor="ingredients">Ingredients</label>
-              <input className="form-control" type="text" id="ingredients"
-              onChange={this.handleChange} value={this.state.ingredients} />
+              {this.state.ingredients.map((value, index) => {
+                let ingredientId = `ingredient-${index}`
+                return (
+                  <input
+                  className="form-control ingredients"
+                  type="text"
+                  id={index}
+                  onChange={this.handleChange}
+                  value={this.state.ingredients[index]} />
+                )
+              })}
             </div>
           </div>
+
+          <br/>
+          <div className="row">
+            <div className="col">
+              <button onClick={this.addIngredient} className="btn btn-info">Add Ingredient</button>
+            </div>
+          </div>
+          <br/>
 
           <div className="row">
             <div className="col">
@@ -125,6 +165,13 @@ class App extends React.Component {
               onChange={this.handleChange} value={this.state.methods} />
             </div>
           </div>
+          <br/>
+          <div className="row">
+            <div className="col">
+              <button className="btn btn-info">Add Step</button>
+            </div>
+          </div>
+          <br/>
 
           <br/>
           <div className="row">
