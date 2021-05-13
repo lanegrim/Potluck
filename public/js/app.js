@@ -76,10 +76,9 @@ class App extends React.Component {
 
   deleteSession = (event) => {
     event.preventDefault()
-    axios.delete('/sessions').then((response) => {
+    axios.delete('/sessions', this.state).then((response) => {
       this.setState({
         currentUser: {},
-
       })
     })
   }
@@ -163,7 +162,7 @@ class App extends React.Component {
         <nav>
         <h1>Potluck</h1>
         <h2>Hello, {this.state.currentUser.username}</h2>
-        <button className="btn btn-danger" onClick={this.deleteSession} type="submit">Logout</button>
+        <button className="btn btn-danger" onClick={this.deleteSession} type="submit">Log Out</button>
         </nav>
 
 
