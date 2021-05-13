@@ -5,7 +5,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const app = express();
-const recipesController = require('./controllers/recipes_controller.js');
 
 ///////////////////////
 // Config
@@ -30,15 +29,18 @@ app.use(
 ///////////////////////
 // Controllers
 ///////////////////////
+const recipesController = require('./controllers/recipes_controller.js');
 app.use('/recipes', recipesController);
+
+const usersController = require('./controllers/users_controller.js')
+app.use('/users', usersController)
+
+const sessionsController = require('./controllers/sessions_controller.js')
+app.use('/sessions', sessionsController)
 
 ///////////////////////
 // Routes
 ///////////////////////
-
-// app.get('/', (req, res) => {
-//     res.redirect('/recipes');
-// });
 
 ///////////////////////
 // Connections
