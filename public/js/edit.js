@@ -1,6 +1,6 @@
 class Edit extends React.Component {
   render = () => {
-    if (this.props.currentUser === this.props.owner) {
+    if (this.props.currentUser.username === this.props.recipe.owner) {
       return (
         <div>
           <details>
@@ -113,6 +113,10 @@ class Edit extends React.Component {
 
           </details>
         </div>
+      )
+    } else {
+      return (
+        null
       )
     }
   }

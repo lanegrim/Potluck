@@ -1,6 +1,6 @@
 class Delete extends React.Component {
   render = () => {
-    if (this.props.currentUser === this.props.owner) {
+    if (this.props.currentUser.username === this.props.recipe.owner) {
       return (
         <div>
           <br />
@@ -8,6 +8,10 @@ class Delete extends React.Component {
             Delete Recipe
         </button>
         </div>
+      )
+    } else {
+      return (
+        null
       )
     }
   }
