@@ -12,7 +12,8 @@ const User = require('../models/users.js')
 
 // on sessions form submit (log in)
 sessions.post('/', (req, res) => {
-    User.findOne({ username: req.body }, (err, foundUser) => {
+    console.log(req.body);
+    User.findOne({ username: req.body.username }, (err, foundUser) => {
         // Database error
         if (err) {
             console.log(err)
