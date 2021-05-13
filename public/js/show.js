@@ -43,6 +43,7 @@ class Show extends React.Component {
                     </ol>
 
                     <Edit
+                    currentUser={this.props.currentUser}
                     handleSubmit={this.props.handleSubmit}
                     handleChange={this.props.handleChange}
                     _id={this.props.recipe._id}
@@ -60,8 +61,9 @@ class Show extends React.Component {
                     ></Edit>
 
                     <Delete
-                      deleteRecipe={this.props.deleteRecipe}
-                      _id={this.props.recipe._id}
+                    currentUser={this.props.currentUser}
+                    deleteRecipe={this.props.deleteRecipe}
+                    _id={this.props.recipe._id}
                     ></Delete>
 
                 </div>
