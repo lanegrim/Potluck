@@ -76,7 +76,7 @@ class App extends React.Component {
 
   deleteSession = (event) => {
     event.preventDefault()
-    axios.delete('/sessions', this.state).then((response) => {
+    axios.delete('/sessions').then((response) => {
       this.setState({
         currentUser: {},
       })
