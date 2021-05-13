@@ -58,9 +58,9 @@ class App extends React.Component {
 
   newUser = (event) => {
     event.preventDefault()
+    console.log('New user', this.state.userInput)
     axios.post('/users', this.state.userInput).then((response) => {
       this.setState({
-        currentUser: response.data,
         userInput: {
           username: '',
           password: '',
