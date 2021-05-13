@@ -7,10 +7,15 @@ class App extends React.Component {
     ingredients: ['', '', ''],
     methods: ['', '', ''],
     duration: '',
+    owner: '',
     recipes: [],
+    userInput: {
+      username: '',
+      password: '',
+      picture: '',
+    },
+    currentUser: {},
     showForm: false,
-    showRecipe: false,
-
   }
 
   handleChange = (event) => {
@@ -27,8 +32,15 @@ class App extends React.Component {
     }
   }
 
+  handleUser = (event) => {
+    let userInput = { ...this.state.userInput }
+    userInput[event.target.id] = event.target.value
+    this.setState({ userInput })
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
+    event.target.reset()
     axios.post('/recipes', this.state).then((response) => {
       // console.log(response)
       this.setState({
@@ -39,6 +51,46 @@ class App extends React.Component {
         ingredients: ['', '', ''],
         methods: ['', '', ''],
         duration: '',
+        owner: '',
+      })
+    })
+  }
+
+  newUser = (event) => {
+    event.preventDefault()
+    axios.post('/users', this.state.userInput).then((response) => {
+      this.setState({
+        currentUser: response.data,
+        userInput: {
+          username: '',
+          password: '',
+          picture: '',
+        },
+      })
+    })
+  }
+
+  newSession = (event) => {
+    event.preventDefault()
+    axios.post('/sessions', this.state.userInput).then((response) => {
+      this.setState({
+        currentUser: response.data,
+        owner: response.data.username,
+        userInput: {
+          username: '',
+          password: '',
+          picture: '',
+        },
+      })
+    })
+  }
+
+  deleteSession = (event) => {
+    event.preventDefault()
+    axios.delete('/sessions').then((response) => {
+      this.setState({
+        currentUser: {},
+        owner: ''
       })
     })
   }
@@ -83,6 +135,7 @@ class App extends React.Component {
 
   updateRecipe = (event) => {
     event.preventDefault()
+    event.target.reset()
     const id = event.target.id
     axios.put('/recipes/' + id, this.state).then((response) => {
       this.setState({
@@ -114,58 +167,83 @@ class App extends React.Component {
   }
 
   render = () => {
-    return (
+    if (Object.keys(this.state.currentUser).length === 0) {
+      return (
+        <div>
+          <h1>Potluck</h1>
+          <Users
+            userInput={this.state.userInput}
+            handleUser={this.handleUser}
+            newUser={this.newUser}
+            newSession={this.newSession}
+          ></Users>
+        </div>
+      )
+    } else {
+      return (
 
-      <div>
+        <div>
 
-        <button onClick={this.showForm} className="btn btn-primary">Add Recipe</button>
-        {this.state.showForm ?
-          <Create
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            title={this.state.title}
-            duration={this.state.duration}
-            type={this.state.type}
-            image={this.state.image}
-            ingredients={this.state.ingredients}
-            addIngredient={this.addIngredient}
-            removeIngredient={this.removeIngredient}
-            methods={this.state.methods}
-            addMethod={this.addMethod}
-            removeMethod={this.removeMethod}
-          ></Create>
-          : null}
+          <nav>
+            <h1>Potluck</h1>
+            <h2>Hello, {this.state.currentUser.username}</h2>
+            <button className="btn btn-danger" onClick={this.deleteSession} type="submit">Log Out</button>
+          </nav>
 
-        <h2>ALL RECIPES</h2>
+          <button onClick={this.showForm} className="btn btn-primary">Add Recipe</button>
+          {this.state.showForm ?
+            <Create
+              currentUser={this.state.currentUser}
+              handleSubmit={this.handleSubmit}
+              handleChange={this.handleChange}
+              title={this.state.title}
+              duration={this.state.duration}
+              type={this.state.type}
+              image={this.state.image}
+              ingredients={this.state.ingredients}
+              addIngredient={this.addIngredient}
+              removeIngredient={this.removeIngredient}
+              methods={this.state.methods}
+              addMethod={this.addMethod}
+              removeMethod={this.removeMethod}
+            ></Create>
+            : null}
 
-        <ul>
-          {this.state.recipes.map((recipe) => {
-            return (
+          <h2>ALL RECIPES</h2>
 
-              <li key={recipe._id}>
+          <ul>
+            {this.state.recipes.map((recipe) => {
+              return (
 
-                <Show
-                  recipe={recipe}
-                  handleSubmit={this.handleSubmit}
-                  handleChange={this.handleChange}
-                  ingredients={this.state.ingredients}
-                  updateRecipe={this.updateRecipe}
-                  addIngredient={this.addIngredient}
-                  removeIngredient={this.removeIngredient}
-                  methods={this.state.methods}
-                  addMethod={this.addMethod}
-                  removeMethod={this.removeMethod}
-                  deleteRecipe={this.deleteRecipe}
-                ></Show>
+                <li key={recipe._id}>
 
-              </li>
-            )
-          })}
-        </ul>
+                  <Show
+                    currentUser={this.state.currentUser}
+                    recipe={recipe}
+                    handleSubmit={this.handleSubmit}
+                    handleChange={this.handleChange}
+                    ingredients={this.state.ingredients}
+                    updateRecipe={this.updateRecipe}
+                    addIngredient={this.addIngredient}
+                    removeIngredient={this.removeIngredient}
+                    methods={this.state.methods}
+                    addMethod={this.addMethod}
+                    removeMethod={this.removeMethod}
+                    deleteRecipe={this.deleteRecipe}
+                    title={this.state.title}
+                    duration={this.state.duration}
+                    type={this.state.type}
+                    image={this.state.image}
+                  ></Show>
 
-      </div>
-    )
+                </li>
+              )
+            })}
+          </ul>
 
+        </div>
+      )
+    }
   }
 }
 
