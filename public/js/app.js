@@ -8,9 +8,11 @@ class App extends React.Component {
     methods: ['', '', ''],
     duration: '',
     recipes: [],
-    username: '',
-    password: '',
-    picture: '',
+    userInput: {
+      username: '',
+      password: '',
+      picture: '',
+    },
     currentUser: {},
     showForm: false,
   }
@@ -27,6 +29,12 @@ class App extends React.Component {
     } else {
       this.setState({ [event.target.id]: event.target.value })
     }
+  }
+
+  handleUser = (event) => {
+    let userInput = {...this.state.userInput}
+    userInput[event.target.id] = event.target.value
+    this.setState({ userInput })
   }
 
   handleSubmit = (event) => {
@@ -48,7 +56,7 @@ class App extends React.Component {
 
   newUser = (event) => {
     event.preventDefault()
-    axios.post('/users', this.state).then((response) => {
+    axios.post('/users', this.state.userInput).then((response) => {
       this.setState({
         currentUser: response.data,
 
@@ -58,7 +66,7 @@ class App extends React.Component {
 
   newSession = (event) => {
     event.preventDefault()
-    axios.post('/sessions', this.state).then((response) => {
+    axios.post('/sessions', this.state.userInput).then((response) => {
       this.setState({
         currentUser: response.data,
 
@@ -164,19 +172,19 @@ class App extends React.Component {
           <div className="row">
             <div className="col">
               <label className="form-label" htmlFor="username">Username</label>
-              <input className="form-control" type="text" id="username" required/>
+              <input className="form-control" onChange={this.handleUser} type="text" id="username" value={this.state.userInput.username} required/>
             </div>
           </div>
           <div className="row">
             <div className="col">
               <label className="form-label" htmlFor="password">Password</label>
-              <input className="form-control" type="password" id="password" required/>
+              <input className="form-control" onChange={this.handleUser} type="password" id="password" value={this.state.userInput.password} required/>
             </div>
           </div>
           <div className="row">
             <div className="col">
               <label className="form-label" htmlFor="picture">Profile Picture</label>
-              <input className="form-control" type="text" id="picture" required/>
+              <input className="form-control" onChange={this.handleUser} type="text" id="picture" value={this.state.userInput.picture} />
             </div>
           </div>
             <br/>
@@ -190,13 +198,13 @@ class App extends React.Component {
           <div className="row">
             <div className="col">
               <label className="form-label" htmlFor="username">Username</label>
-              <input className="form-control" type="text" id="username" required/>
+              <input className="form-control" onChange={this.handleUser} type="text" id="username" required/>
             </div>
           </div>
           <div className="row">
             <div className="col">
               <label className="form-label" htmlFor="password">Password</label>
-              <input className="form-control" type="password" id="password" required/>
+              <input className="form-control" onChange={this.handleUser} type="password" id="password" required/>
             </div>
           </div>
           <br/>
