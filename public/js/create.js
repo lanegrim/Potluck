@@ -56,7 +56,7 @@ class Create extends React.Component {
                   data-id={index}
                   id={ingredientId}
                   onChange={this.props.handleChange}
-                  defaultValue={this.props.ingredients[index]} />
+                  value={this.props.ingredients[index]} />
               )
             })}
           </div>
@@ -66,7 +66,9 @@ class Create extends React.Component {
         <div className="row">
           <div>
             <button onClick={this.props.addIngredient} className="btn btn-info">Add Ingredient</button>
-            <button onClick={this.props.removeIngredient} className="btn btn-warning">Remove Ingredient</button>
+            {this.props.ingredients.length > 1 ? (
+              <button onClick={this.props.removeIngredient} className="btn btn-warning">Remove Ingredient</button>
+            ) : null}
           </div>
         </div>
         <br />
@@ -84,7 +86,7 @@ class Create extends React.Component {
                   data-id={index}
                   id={methodId}
                   onChange={this.props.handleChange}
-                  defaultValue={this.props.methods[index]} />
+                  value={this.props.methods[index]} />
               )
             })}
           </div>
@@ -94,7 +96,9 @@ class Create extends React.Component {
         <div className="row">
           <div>
             <button onClick={this.props.addMethod} className="btn btn-info">Add Step</button>
+            {this.props.methods.length > 1 ? (
             <button onClick={this.props.removeMethod} className="btn btn-warning">Remove Step</button>
+            ) : null}
           </div>
         </div>
 

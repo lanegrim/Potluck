@@ -156,6 +156,10 @@ class App extends React.Component {
                   addMethod={this.addMethod}
                   removeMethod={this.removeMethod}
                   deleteRecipe={this.deleteRecipe}
+                  title={this.state.title}
+                  duration={this.state.duration}
+                  type={this.state.type}
+                  image={this.state.image}
                 ></Show>
 
               </li>

@@ -53,6 +53,10 @@ class Show extends React.Component {
                     methods={this.props.methods}
                     addMethod={this.props.addMethod}
                     removeMethod={this.props.removeMethod}
+                    title={this.state.title}
+                    duration={this.state.duration}
+                    type={this.state.type}
+                    image={this.state.image}
                     ></Edit>
 
                     <Delete
