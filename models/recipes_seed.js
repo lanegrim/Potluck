@@ -19,5 +19,6 @@ module.exports = [
         ],
         type: "snack",
         duration: "15 mins",
+        owner: "Lane"
     },
 ]

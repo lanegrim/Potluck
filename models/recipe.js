@@ -11,8 +11,9 @@ const recipeSchema = new mongoose.Schema({
     image: { type: String, required: true },
     ingredients: { type: Array, required: true },
     methods: { type: Array, required: true },
-    type: { type: String },
-    duration: { type: String, },
+    type: { type: String, required: true },
+    duration: { type: String, required: true },
+    owner: { type: String, required: true }
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema)
