@@ -8,6 +8,7 @@ class App extends React.Component {
     methods: ['', '', ''],
     duration: '',
     recipes: [],
+    currentUser: {},
     showForm: false,
   }
 
