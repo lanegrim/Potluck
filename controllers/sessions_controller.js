@@ -45,6 +45,7 @@ sessions.delete('/', (req, res) => {
     req.session.destroy(() => {
     })
     console.log('session ended');
+    res.json({});
 });
 
 ///////////////////////
