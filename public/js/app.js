@@ -7,6 +7,7 @@ class App extends React.Component {
     ingredients: ['', '', ''],
     methods: ['', '', ''],
     duration: '',
+    owner: '',
     recipes: [],
     userInput: {
       username: '',
@@ -50,6 +51,7 @@ class App extends React.Component {
         ingredients: ['', '', ''],
         methods: ['', '', ''],
         duration: '',
+        owner: '',
       })
     })
   }
@@ -69,6 +71,7 @@ class App extends React.Component {
     axios.post('/sessions', this.state.userInput).then((response) => {
       this.setState({
         currentUser: response.data,
+        owner: response.data.username
 
       })
     })
@@ -79,6 +82,7 @@ class App extends React.Component {
     axios.delete('/sessions').then((response) => {
       this.setState({
         currentUser: {},
+        owner: ''
       })
     })
   }
@@ -165,52 +169,14 @@ class App extends React.Component {
         <button className="btn btn-danger" onClick={this.deleteSession} type="submit">Log Out</button>
         </nav>
 
+        <Users
+        userInput={this.state.userInput}
+        handleUser={this.handleUser}
+        newUser={this.newUser}
+        newSession={this.newSession}
+        ></Users>
 
-        <br/>
-        <form className="newUser" onSubmit={this.newUser}>
-          <div className="row">
-            <div className="col">
-              <label className="form-label" htmlFor="username">Username</label>
-              <input className="form-control" onChange={this.handleUser} type="text" id="username" value={this.state.userInput.username} required/>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label className="form-label" htmlFor="password">Password</label>
-              <input className="form-control" onChange={this.handleUser} type="password" id="password" value={this.state.userInput.password} required/>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label className="form-label" htmlFor="picture">Profile Picture</label>
-              <input className="form-control" onChange={this.handleUser} type="text" id="picture" value={this.state.userInput.picture} />
-            </div>
-          </div>
-            <br/>
-            <input className="btn btn-primary" type="submit" value="Register" />
-        </form>
-        <br/>
-
-
-        <br/>
-        <form className="newSession" onSubmit={this.newSession}>
-          <div className="row">
-            <div className="col">
-              <label className="form-label" htmlFor="username">Username</label>
-              <input className="form-control" onChange={this.handleUser} type="text" id="username" required/>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label className="form-label" htmlFor="password">Password</label>
-              <input className="form-control" onChange={this.handleUser} type="password" id="password" required/>
-            </div>
-          </div>
-          <br/>
-          <input className="btn btn-primary" type="submit" value="Log In" />
-        </form>
-        <br/>
-
+        
 
         <button onClick={this.showForm} className="btn btn-primary">Add Recipe</button>
         {this.state.showForm ?

@@ -109,8 +109,6 @@ class Create extends React.Component {
             </div>
           </div>
 
-          <input type="hidden" id="owner" value={this.props.currentUser.username}></input>
-
         </form>
       </div>
     )
