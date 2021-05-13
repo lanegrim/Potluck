@@ -47,6 +47,7 @@ class App extends React.Component {
     event.preventDefault()
     axios.post('/users', this.state).then((response) => {
       this.setState({
+        currentUser: response.data,
 
       })
     })
@@ -56,6 +57,7 @@ class App extends React.Component {
     event.preventDefault()
     axios.post('/sessions', this.state).then((response) => {
       this.setState({
+        currentUser: response.data,
 
       })
     })
@@ -65,6 +67,7 @@ class App extends React.Component {
     event.preventDefault()
     axios.delete('/sessions').then((response) => {
       this.setState({
+        currentUser: {},
 
       })
     })
@@ -147,7 +150,8 @@ class App extends React.Component {
       <div>
 
         <nav>
-        <h2></h2>
+        <h1>Potluck</h1>
+        <h2>Hello, {this.state.currentUser.username}</h2>
         <button className="btn btn-danger" onClick={this.deleteSession} type="submit">Logout</button>
         </nav>
 
@@ -201,6 +205,7 @@ class App extends React.Component {
         <button onClick={this.showForm} className="btn btn-primary">Add Recipe</button>
         {this.state.showForm ?
           <Create
+            currentUser={this.state.currentUser}
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
             title={this.state.title}
@@ -225,6 +230,7 @@ class App extends React.Component {
               <li key={recipe._id}>
 
                 <Show
+                  currentUser={this.state.currentUser}
                   recipe={recipe}
                   handleSubmit={this.handleSubmit}
                   handleChange={this.handleChange}
