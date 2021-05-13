@@ -12,12 +12,12 @@ class Edit extends React.Component {
               <div className="col-4">
                 <label className="form-label" htmlFor="title">Title</label>
                 <input className="form-control" type="text" id="title"
-                  onChange={this.props.handleChange} value={this.props.title} />
+                  onChange={this.props.handleChange} defaultValue={this.props.title} />
               </div>
               <div className="col-4">
                 <label className="form-label" htmlFor="duration">Duration</label>
                 <input className="form-control" type="text" id="duration"
-                  onChange={this.props.handleChange} value={this.props.duration} />
+                  onChange={this.props.handleChange} defaultValue={this.props.duration} />
               </div>
               <div className="col-4">
                 <label className="form-label" htmlFor="type">Type of Recipe</label>
@@ -36,7 +36,7 @@ class Edit extends React.Component {
               <div className="col">
                 <label className="form-label" htmlFor="image">Image</label>
                 <input className="form-control" type="text" id="image"
-                  onChange={this.props.handleChange} value={this.props.image} />
+                  onChange={this.props.handleChange} defaultValue={this.props.image} />
               </div>
             </div>
 
