@@ -12,17 +12,17 @@ class Edit extends React.Component {
               <div className="col-4">
                 <label className="form-label" htmlFor="title">Title</label>
                 <input className="form-control" type="text" id="title"
-                  onInput={this.props.handleChange} value={this.props.title} />
+                  onChange={this.props.handleChange} value={this.props.title} />
               </div>
               <div className="col-4">
                 <label className="form-label" htmlFor="duration">Duration</label>
                 <input className="form-control" type="text" id="duration"
-                  onInput={this.props.handleChange} value={this.props.duration} />
+                  onChange={this.props.handleChange} value={this.props.duration} />
               </div>
               <div className="col-4">
                 <label className="form-label" htmlFor="type">Type of Recipe</label>
                 <select className="form-select" type="text" id="type"
-                  onInput={this.props.handleChange} value={this.props.type}>
+                  onChange={this.props.handleChange} value={this.props.type}>
                   <option defaultValue>Choose Recipe Type...</option>
                   <option value="Main">Main</option>
                   <option value="Side">Side</option>
@@ -36,7 +36,7 @@ class Edit extends React.Component {
               <div className="col">
                 <label className="form-label" htmlFor="image">Image</label>
                 <input className="form-control" type="text" id="image"
-                  onInput={this.props.handleChange} value={this.props.image} />
+                  onChange={this.props.handleChange} value={this.props.image} />
               </div>
             </div>
 
@@ -52,7 +52,7 @@ class Edit extends React.Component {
                       type="text"
                       data-id={index}
                       id={ingredientId}
-                      onInput={this.props.handleChange}
+                      onChange={this.props.handleChange}
                       value={this.props.ingredients[index]} />
                   )
                 })}
@@ -82,7 +82,7 @@ class Edit extends React.Component {
                       type="text"
                       data-id={index}
                       id={methodId}
-                      onInput={this.props.handleChange}
+                      onChange={this.props.handleChange}
                       value={this.props.methods[index]} />
                   )
                 })}
