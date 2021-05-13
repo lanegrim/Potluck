@@ -42,6 +42,33 @@ class App extends React.Component {
     })
   }
 
+  newUser = (event) => {
+    event.preventDefault()
+    axios.post('/users', this.state).then((response) => {
+      this.setState({
+
+      })
+    })
+  }
+
+  newSession = (event) => {
+    event.preventDefault()
+    axios.post('/sessions', this.state).then((response) => {
+      this.setState({
+
+      })
+    })
+  }
+
+  deleteSession = (event) => {
+    event.preventDefault()
+    axios.delete('/sessions' + event.target.value).then((response) => {
+      this.setState({
+
+      })
+    })
+  }
+
   addIngredient = (event) => {
     event.preventDefault()
     this.setState((prevState) => ({
@@ -117,6 +144,58 @@ class App extends React.Component {
     return (
 
       <div>
+
+        <nav>
+        <h2></h2>
+        <button className="btn btn-danger" onClick={this.deleteSession} type="submit">Logout</button>
+        </nav>
+
+
+        <br/>
+        <form className="newUser" onSubmit={this.newUser}>
+          <div className="row">
+            <div className="col">
+              <label className="form-label" htmlFor="username">Username</label>
+              <input className="form-control" type="text" id="username" required/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <label className="form-label" htmlFor="password">Password</label>
+              <input className="form-control" type="password" id="password" required/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <label className="form-label" htmlFor="picture">Profile Picture</label>
+              <input className="form-control" type="file" id="username" required/>
+            </div>
+          </div>
+            <br/>
+            <input className="btn btn-primary" type="submit" value="Register" />
+        </form>
+        <br/>
+
+
+        <br/>
+        <form className="newSession" onSubmit={this.newSession}>
+          <div className="row">
+            <div className="col">
+              <label className="form-label" htmlFor="username">Username</label>
+              <input className="form-control" type="text" id="username" required/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <label className="form-label" htmlFor="password">Password</label>
+              <input className="form-control" type="password" id="password" required/>
+            </div>
+          </div>
+          <br/>
+          <input className="btn btn-primary" type="submit" value="Log In" />
+        </form>
+        <br/>
+
 
         <button onClick={this.showForm} className="btn btn-primary">Add Recipe</button>
         {this.state.showForm ?
