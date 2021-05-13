@@ -62,7 +62,7 @@ class App extends React.Component {
 
   deleteSession = (event) => {
     event.preventDefault()
-    axios.delete('/sessions' + event.target.value).then((response) => {
+    axios.delete('/sessions').then((response) => {
       this.setState({
 
       })
@@ -168,7 +168,7 @@ class App extends React.Component {
           <div className="row">
             <div className="col">
               <label className="form-label" htmlFor="picture">Profile Picture</label>
-              <input className="form-control" type="file" id="username" required/>
+              <input className="form-control" type="text" id="picture" required/>
             </div>
           </div>
             <br/>
