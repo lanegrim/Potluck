@@ -9,6 +9,8 @@ class App extends React.Component {
     duration: '',
     owner: '',
     ownerPicture: '',
+    filterType: '',
+    shownRecipes: [],
     recipes: [],
     userInput: {
       username: '',
@@ -45,7 +47,8 @@ class App extends React.Component {
     axios.post('/recipes', this.state).then((response) => {
       // console.log(response)
       this.setState({
-        recipes: response.data,
+        recipes: response.data.reverse(),
+        shownRecipes: response.data,
         title: '',
         image: '',
         type: '',
@@ -159,15 +162,43 @@ class App extends React.Component {
   deleteRecipe = (event) => {
     axios.delete('/recipes/' + event.target.value).then((response) => {
       this.setState({
-        recipes: response.data
+        recipes: response.data.reverse(),
+        shownRecipes: response.data,
       })
     })
   }
 
+  filterRecipesByType = (event) => {
+    event.preventDefault()
+    let filteredRecipes = []
+    for (let i = 0; i < this.state.recipes.length; i++) {
+      if (this.state.recipes[i].type === this.state.filterType) {
+        filteredRecipes.push(this.state.recipes[i]);
+      };
+    };
+    this.setState({
+      shownRecipes: filteredRecipes,
+      filterType: '',
+    });
+  };
+
+  filterRecipesByOwner = () => {
+    let filteredRecipes = []
+    for (let i = 0; i < this.state.recipes.length; i++) {
+      if (this.state.recipes[i].owner === this.state.currentUser.username) {
+        filteredRecipes.push(this.state.recipes[i]);
+      };
+    };
+    this.setState({
+      shownRecipes: filteredRecipes,
+    });
+  };
+
   componentDidMount = () => {
     axios.get('/recipes').then((response) => {
       this.setState({
-        recipes: response.data
+        recipes: response.data.reverse(),
+        shownRecipes: response.data
       })
     })
   }
@@ -196,6 +227,26 @@ class App extends React.Component {
             <button className="btn btn-danger" onClick={this.deleteSession} type="submit">Log Out</button>
           </nav>
 
+          <header>
+
+          <form onSubmit={this.filterRecipesByType}>
+            <select className="form-select" type="text" id="filterType"
+            onChange={this.handleChange} value={this.state.filterType}>
+              <option defaultValue>Filter by Recipe Type</option>
+              <option value="Main">Main</option>
+              <option value="Side">Side</option>
+              <option value="Dessert">Dessert</option>
+              <option value="Snack">Snack</option>
+            </select>
+            <button type="submit">Filter</button>
+          </form>
+
+          <button onClick={this.filterRecipesByOwner}>Show My Recipes</button>
+
+          <button onClick={this.componentDidMount}>Show All Recipes</button>
+
+          </header>
+
           <button onClick={this.showForm} className="btn btn-primary">Add Recipe</button>
           {this.state.showForm ?
             <Create
@@ -218,7 +269,7 @@ class App extends React.Component {
           <h2>ALL RECIPES</h2>
 
           <ul>
-            {this.state.recipes.map((recipe) => {
+            {this.state.shownRecipes.map((recipe) => {
               return (
 
                 <li key={recipe._id}>
@@ -246,6 +297,15 @@ class App extends React.Component {
               )
             })}
           </ul>
+
+          <button onClick={() => {
+            window.scroll(
+              {
+                top: 0,
+                behavior: "smooth"
+              }
+            )
+          }}>Scroll to Top</button>
 
         </div>
       )
