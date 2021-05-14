@@ -51,7 +51,7 @@ class App extends React.Component {
         ingredients: ['', '', ''],
         methods: ['', '', ''],
         duration: '',
-        owner: '',
+        owner: this.state.currentUser.username,
       })
     })
   }
@@ -146,6 +146,7 @@ class App extends React.Component {
         ingredients: ['', '', ''],
         methods: ['', '', ''],
         duration: '',
+        owner: this.state.currentUser.username,
       })
     })
   }
