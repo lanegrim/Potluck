@@ -9,6 +9,7 @@ class App extends React.Component {
     duration: '',
     owner: '',
     ownerPicture: '',
+    filterType: '',
     shownRecipes: [],
     recipes: [],
     userInput: {
@@ -46,7 +47,8 @@ class App extends React.Component {
     axios.post('/recipes', this.state).then((response) => {
       // console.log(response)
       this.setState({
-        recipes: response.data,
+        recipes: response.data.reverse(),
+        shownRecipes: response.data,
         title: '',
         image: '',
         type: '',
@@ -160,20 +162,23 @@ class App extends React.Component {
   deleteRecipe = (event) => {
     axios.delete('/recipes/' + event.target.value).then((response) => {
       this.setState({
-        recipes: response.data
+        recipes: response.data.reverse(),
+        shownRecipes: response.data,
       })
     })
   }
 
   filterRecipesByType = (event) => {
+    event.preventDefault()
     let filteredRecipes = []
     for (let i = 0; i < this.state.recipes.length; i++) {
-      if (this.state.recipes[i].type === event.target.value) {
-        filteredrecipes.push(this.state.recipes[i]);
+      if (this.state.recipes[i].type === this.state.filterType) {
+        filteredRecipes.push(this.state.recipes[i]);
       };
     };
     this.setState({
       shownRecipes: filteredRecipes,
+      filterType: '',
     });
   };
 
@@ -181,7 +186,7 @@ class App extends React.Component {
     let filteredRecipes = []
     for (let i = 0; i < this.state.recipes.length; i++) {
       if (this.state.recipes[i].owner === this.state.currentUser.username) {
-        filteredrecipes.push(this.state.recipes[i]);
+        filteredRecipes.push(this.state.recipes[i]);
       };
     };
     this.setState({
@@ -221,6 +226,26 @@ class App extends React.Component {
             <h2>Hello, {this.state.currentUser.username}</h2>
             <button className="btn btn-danger" onClick={this.deleteSession} type="submit">Log Out</button>
           </nav>
+
+          <header>
+
+          <form onSubmit={this.filterRecipesByType}>
+            <select className="form-select" type="text" id="type"
+            onChange={this.handleChange} value={this.state.filterType}>
+              <option defaultValue>Filter by Recipe Type</option>
+              <option value="Main">Main</option>
+              <option value="Side">Side</option>
+              <option value="Dessert">Dessert</option>
+              <option value="Snack">Snack</option>
+            </select>
+            <button type="submit">Filter</button>
+          </form>
+
+          <button onClick={this.filterRecipesByOwner}>Show My Recipes</button>
+
+          <button onClick={this.componentDidMount}>Show All Recipes</button>
+
+          </header>
 
           <button onClick={this.showForm} className="btn btn-primary">Add Recipe</button>
           {this.state.showForm ?
