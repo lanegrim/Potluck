@@ -51,16 +51,16 @@ class App extends React.Component {
         ingredients: ['', '', ''],
         methods: ['', '', ''],
         duration: '',
-        owner: '',
+        owner: this.state.currentUser.username,
       })
     })
   }
 
   newUser = (event) => {
     event.preventDefault()
+    console.log('New user', this.state.userInput)
     axios.post('/users', this.state.userInput).then((response) => {
       this.setState({
-        currentUser: response.data,
         userInput: {
           username: '',
           password: '',
@@ -146,6 +146,7 @@ class App extends React.Component {
         ingredients: ['', '', ''],
         methods: ['', '', ''],
         duration: '',
+        owner: this.state.currentUser.username,
       })
     })
   }

@@ -3,7 +3,7 @@ class Users extends React.Component {
     registerHidden: true,
   }
 
-  showRegistration = (event) => {
+  showRegistration = () => {
     this.setState({
       registerHidden: !this.state.registerHidden
     })
