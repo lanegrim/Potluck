@@ -13,7 +13,8 @@ const recipeSchema = new mongoose.Schema({
     methods: { type: Array, required: true },
     type: { type: String, required: true },
     duration: { type: String, required: true },
-    owner: { type: String, required: true }
+    owner: { type: String, required: true },
+    ownerPicture: { type: String, required: true }
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema)

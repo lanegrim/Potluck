@@ -8,6 +8,7 @@ class App extends React.Component {
     methods: ['', '', ''],
     duration: '',
     owner: '',
+    ownerPicture: '',
     recipes: [],
     userInput: {
       username: '',
@@ -52,6 +53,7 @@ class App extends React.Component {
         methods: ['', '', ''],
         duration: '',
         owner: this.state.currentUser.username,
+        ownerPicture: this.state.currentUser.picture,
       })
     })
   }
@@ -76,6 +78,7 @@ class App extends React.Component {
       this.setState({
         currentUser: response.data,
         owner: response.data.username,
+        ownerPicture: response.data.picture,
         userInput: {
           username: '',
           password: '',
@@ -90,7 +93,8 @@ class App extends React.Component {
     axios.delete('/sessions').then((response) => {
       this.setState({
         currentUser: {},
-        owner: ''
+        owner: '',
+        ownerPicture: '',
       })
     })
   }
@@ -147,6 +151,7 @@ class App extends React.Component {
         methods: ['', '', ''],
         duration: '',
         owner: this.state.currentUser.username,
+        ownerPicture: this.state.currentUser.picture,
       })
     })
   }
