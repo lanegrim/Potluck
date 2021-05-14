@@ -27,7 +27,7 @@ sessions.post('/', (req, res) => {
                 // add the user to our session
                 req.session.currentUser = foundUser
                 let secureUser = {
-                    image: foundUser.image,
+                    picture: foundUser.picture,
                     _id: foundUser._id,
                     username: foundUser.username,
                 }
