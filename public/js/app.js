@@ -9,6 +9,7 @@ class App extends React.Component {
     duration: '',
     owner: '',
     ownerPicture: '',
+    shownRecipes: [],
     recipes: [],
     userInput: {
       username: '',
@@ -164,10 +165,35 @@ class App extends React.Component {
     })
   }
 
+  filterRecipesByType = (event) => {
+    let filteredRecipes = []
+    for (let i = 0; i < this.state.recipes.length; i++) {
+      if (this.state.recipes[i].type === event.target.value) {
+        filteredrecipes.push(this.state.recipes[i]);
+      };
+    };
+    this.setState({
+      shownRecipes: filteredRecipes,
+    });
+  };
+
+  filterRecipesByOwner = () => {
+    let filteredRecipes = []
+    for (let i = 0; i < this.state.recipes.length; i++) {
+      if (this.state.recipes[i].owner === this.state.currentUser.username) {
+        filteredrecipes.push(this.state.recipes[i]);
+      };
+    };
+    this.setState({
+      shownRecipes: filteredRecipes,
+    });
+  };
+
   componentDidMount = () => {
     axios.get('/recipes').then((response) => {
       this.setState({
-        recipes: response.data.reverse()
+        recipes: response.data.reverse(),
+        shownRecipes: response.data
       })
     })
   }
@@ -218,7 +244,7 @@ class App extends React.Component {
           <h2>ALL RECIPES</h2>
 
           <ul>
-            {this.state.recipes.map((recipe) => {
+            {this.state.shownRecipes.map((recipe) => {
               return (
 
                 <li key={recipe._id}>
