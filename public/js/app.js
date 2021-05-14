@@ -146,7 +146,8 @@ class App extends React.Component {
     const id = event.target.id
     axios.put('/recipes/' + id, this.state).then((response) => {
       this.setState({
-        recipes: response.data,
+        recipes: response.data.reverse(),
+        shownRecipes: response.data,
         title: '',
         image: '',
         type: '',
