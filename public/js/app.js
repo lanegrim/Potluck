@@ -176,27 +176,27 @@ class App extends React.Component {
     for (let i = 0; i < this.state.recipes.length; i++) {
       if (this.state.recipes[i].type === this.state.filterType) {
         filteredRecipes.push(this.state.recipes[i]);
-      };
-    };
+      }
+    }
       if (filteredRecipes.length > 0) {
         this.setState({
           shownRecipes: filteredRecipes,
           filterType: '',
-        });
-      };
-  };
+        })
+      }
+  }
 
   filterRecipesByOwner = () => {
     let filteredRecipes = []
     for (let i = 0; i < this.state.recipes.length; i++) {
       if (this.state.recipes[i].owner === this.state.currentUser.username) {
         filteredRecipes.push(this.state.recipes[i]);
-      };
-    };
+      }
+    }
     this.setState({
       shownRecipes: filteredRecipes,
-    });
-  };
+    })
+  }
 
   componentDidMount = () => {
     axios.get('/recipes').then((response) => {
@@ -211,7 +211,11 @@ class App extends React.Component {
     if (Object.keys(this.state.currentUser).length === 0) {
       return (
         <div>
-          <h1>Potluck</h1>
+          <div className="logo">
+            <h1 className="logoH1">P<img className="tomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato"/>tluck</h1>
+            <h4 className="logoH4"><i>a food-focused recipe sharing network</i></h4>
+            <h2 className="logoH2">CREATE • SHARE • ENJOY</h2>
+          </div>
           <Users
             userInput={this.state.userInput}
             handleUser={this.handleUser}
@@ -226,8 +230,8 @@ class App extends React.Component {
         <div>
 
           <nav>
-            <h1>Potluck</h1>
             <h2>Hello, {this.state.currentUser.username}</h2>
+            <h1 className="logoH1">P<img className="tomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato"/>tluck</h1>
             <button className="btn btn-danger" onClick={this.deleteSession} type="submit">Log Out</button>
           </nav>
 
