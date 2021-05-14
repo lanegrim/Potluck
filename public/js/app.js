@@ -230,7 +230,7 @@ class App extends React.Component {
           <header>
 
           <form onSubmit={this.filterRecipesByType}>
-            <select className="form-select" type="text" id="type"
+            <select className="form-select" type="text" id="filterType"
             onChange={this.handleChange} value={this.state.filterType}>
               <option defaultValue>Filter by Recipe Type</option>
               <option value="Main">Main</option>
