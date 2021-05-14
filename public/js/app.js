@@ -98,6 +98,7 @@ class App extends React.Component {
         currentUser: {},
         owner: '',
         ownerPicture: '',
+        shownRecipes: this.state.recipes,
       })
     })
   }
@@ -177,10 +178,12 @@ class App extends React.Component {
         filteredRecipes.push(this.state.recipes[i]);
       };
     };
-    this.setState({
-      shownRecipes: filteredRecipes,
-      filterType: '',
-    });
+      if (filteredRecipes.length > 0) {
+        this.setState({
+          shownRecipes: filteredRecipes,
+          filterType: '',
+        });
+      };
   };
 
   filterRecipesByOwner = () => {
