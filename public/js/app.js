@@ -167,7 +167,7 @@ class App extends React.Component {
   componentDidMount = () => {
     axios.get('/recipes').then((response) => {
       this.setState({
-        recipes: response.data
+        recipes: response.data.reverse()
       })
     })
   }
@@ -246,6 +246,15 @@ class App extends React.Component {
               )
             })}
           </ul>
+
+          <button onClick={() => {
+            window.scroll(
+              {
+                top: 0,
+                behavior: "smooth"
+              }
+            )
+          }}>Scroll to Top</button>
 
         </div>
       )
