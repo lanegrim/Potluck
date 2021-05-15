@@ -15,7 +15,7 @@ body {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  margin-top: 15%;
+  margin-top: 5%;
   margin-bottom: 5%;
 }
 
@@ -44,39 +44,80 @@ body {
   width: 115px;
 }
 
-
-.sessionDiv {
+.sessionDiv, .userDiv {
   display: flex;
   justify-content: center;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-.newSession {
+.newSession, .newUser {
   display: flex;
   justify-content: center;
   width: 70%;
 }
 
-.loginDiv, .authDiv {
+.loginDiv, .registerDiv, .authDiv {
   display: flex;
   justify-content: center;
 }
 
-.loginButton {
+.loginButton, .registerButton {
   font-size: 1.4em;
+  border: 2px solid black;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .toggleAuth {
   margin-top: 5%;
-  background-color: #E52029;
+  background-color: #253D5B;
   color: ghostwhite;
+  border: 2px solid black;
   font-size: 1.6em;
 }
 
+.toggleAuth:hover {
+  background-color: ghostwhite;
+  color: black;
+}
 
 
-/* FORMS */
+/* NAV BAR */
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+.navH1 {
+  font-family: 'Slackey', cursive;
+  color: #000;
+  font-size: 90px;
+  margin: 0;
+}
+
+.navPicture {
+  width: 125px;
+  border: 2px solid black;
+}
+
+.navTomato {
+  width: 80px;
+}
+
+.logoutButton {
+  font-size: 1.4em;
+  border: 2px solid black;
+}
+
+
+/* HEADER / FILTERS */
+
+/* DEFAULT FORMS */
 
 fieldset {
   border: 3px solid black;
@@ -88,7 +129,7 @@ fieldset {
 
 legend {
   float: none;
-  padding: 0 40px;
+  padding: 0 30px;
   margin: 0;
   border: 3px solid black;
   background-color: #E52029;
@@ -99,11 +140,17 @@ legend {
 }
 
 input.form-control:focus,
+input.form-select:focus,
 input[type=text]:focus,
-input[type=password]:focus {
+input[type=password]:focus,
+input.form-control:active,
+input.form-select:active,
+input[type=text]:active,
+input[type=password]:active,
+button {
   border: 2px solid black;
-  outline: 1px solid black;
   box-shadow: none;
+  outline: none;
 }
 
 .form-label {
@@ -120,14 +167,15 @@ input[type=password]:focus {
   justify-content: center;
 }
 
-.btn {
-  border: 2px solid black;
-  box-sizing: border-box;
-}
-
 .btn:hover {
   border: 2px solid black;
   color: black;
+  font-weight: bold;
+}
+
+.btn:active {
+  outline: none;
+  box-shadow: none;
 }
 
 
@@ -156,6 +204,22 @@ input[type=password]:focus {
   .logoH4 {
     font-size: 20px;
   }
+
+  .navH1 {
+    font-size: 50px
+  }
+
+  .navTomato {
+    width: 40px;
+  }
+
+  .logoutButton {
+    font-size: .9em;
+  }
+
+  .navPicture {
+    width: 75px;
+  }
 }
 
 @media screen and (min-width: 1400px) {
@@ -166,6 +230,22 @@ input[type=password]:focus {
 
   .tomato {
     width: 130px;
+  }
+
+  .navH1 {
+    font-size: 110px
+  }
+
+  .navTomato {
+    width: 100px;
+  }
+
+  .navPicture {
+    width: 175px;
+  }
+
+  .logoutButton {
+    font-size: 1.6em;
   }
 
 }

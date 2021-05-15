@@ -16,22 +16,22 @@ class Users extends React.Component {
           <div className="sessionDiv">
             <form className="newSession" onSubmit={this.props.newSession}>
               <fieldset>
-                <legend>Welcome!</legend>
-                  <div className="row mb-3">
-                    <div className="col-11">
-                      <label className="form-label" htmlFor="username">Username</label>
-                      <input className="form-control" onChange={this.props.handleUser} type="text" id="username" value={this.props.userInput.username} required />
-                    </div>
+              <legend>Come on in!</legend>
+                <div className="row mb-3">
+                  <div className="col-11">
+                    <label className="form-label" htmlFor="username">Username</label>
+                    <input className="form-control" onChange={this.props.handleUser} type="text" id="username" value={this.props.userInput.username} required />
                   </div>
-                  <div className="row mb-3">
-                    <div className="col-11">
-                      <label className="form-label" htmlFor="password">Password</label>
-                      <input className="form-control" onChange={this.props.handleUser} type="password" id="password" value={this.props.userInput.password} required />
-                    </div>
+                </div>
+                <div className="row mb-3">
+                  <div className="col-11">
+                    <label className="form-label" htmlFor="password">Password</label>
+                    <input className="form-control" onChange={this.props.handleUser} type="password" id="password" value={this.props.userInput.password} required />
                   </div>
-                  <div className="loginDiv">
-                    <input className="btn btn-success loginButton " type="submit" value="LOG IN" />
-                  </div>
+                </div>
+                <div className="loginDiv">
+                  <input className="btn btn-success loginButton " type="submit" value="LOG IN" />
+                </div>
               </fieldset>
             </form>
           </div>
@@ -43,33 +43,38 @@ class Users extends React.Component {
     } else {
       return (
         <div>
-          <h2>Register</h2>
-          <br />
-          <form className="newUser" onSubmit={this.props.newUser}>
-            <div className="row">
-              <div className="col">
-                <label className="form-label" htmlFor="username">Username</label>
-                <input className="form-control" onChange={this.props.handleUser} type="text" id="username" value={this.props.userInput.username} required />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <label className="form-label" htmlFor="password">Password</label>
-                <input className="form-control" onChange={this.props.handleUser} type="password" id="password" value={this.props.userInput.password} required />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <label className="form-label" htmlFor="picture">Profile Picture</label>
-                <input className="form-control" onChange={this.props.handleUser} type="text" id="picture" value={this.props.userInput.picture} />
-              </div>
-            </div>
-            <br />
-            <input className="btn btn-primary" type="submit" value="Register" />
-          </form>
-          <button className="btn btn-outline-primary" onClick={this.showRegistration}>Have an Account? Log In!</button>
-          <br />
-
+          <div className="userDiv">
+            <form className="newUser" onSubmit={this.props.newUser}>
+              <fieldset>
+                <legend>Welcome!</legend>
+                <div className="row mb-3">
+                  <div className="col-11">
+                    <label className="form-label" htmlFor="username">Username</label>
+                    <input className="form-control" onChange={this.props.handleUser} type="text" id="username" value={this.props.userInput.username} required />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <div className="col-11">
+                    <label className="form-label" htmlFor="password">Password</label>
+                    <input className="form-control" onChange={this.props.handleUser} type="password" id="password" value={this.props.userInput.password} required />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <div className="col-11">
+                    <label className="form-label" htmlFor="picture">Profile Picture</label>
+                    <input className="form-control" onChange={this.props.handleUser}
+                    placeholder="Image URL" type="text" id="picture" value={this.props.userInput.picture} />
+                  </div>
+                </div>
+                <div className="registerDiv">
+                  <input className="btn btn-success registerButton " type="submit" value="REGISTER" />
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div className="authDiv">
+            <button className="btn toggleAuth" onClick={this.showRegistration}>Have an Account? Log In!</button>
+          </div>
         </div>
       )
     }

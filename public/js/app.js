@@ -230,9 +230,9 @@ class App extends React.Component {
         <div>
 
           <nav>
-            <h2>Hello, {this.state.currentUser.username}</h2>
-            <h1 className="logoH1">P<img className="tomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato"/>tluck</h1>
-            <button className="btn btn-danger" onClick={this.deleteSession} type="submit">Log Out</button>
+            <img className="navPicture" src={this.state.ownerPicture} alt={this.state.owner}/>
+            <h1 className="navH1">P<img className="navTomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato"/>tluck</h1>
+            <button className="btn btn-danger logoutButton" onClick={this.deleteSession} type="submit">Log Out</button>
           </nav>
 
           <header>
@@ -273,8 +273,6 @@ class App extends React.Component {
               removeMethod={this.removeMethod}
             ></Create>
             : null}
-
-          <h2>ALL RECIPES</h2>
 
           <ul>
             {this.state.shownRecipes.map((recipe) => {
