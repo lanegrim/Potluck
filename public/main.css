@@ -178,7 +178,7 @@ nav {
 .addDiv {
   display: flex;
   justify-content: center;
-  max-width: 1000px;
+  max-width: 950px;
   margin: 0 auto;
 }
 
