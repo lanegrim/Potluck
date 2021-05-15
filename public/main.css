@@ -273,6 +273,10 @@ nav {
   border: 2px solid #253D5B;
 }
 
+.card-header {
+  border-radius: 10px;
+}
+
 .imageDiv {
   display: flex;
   justify-content: center;
