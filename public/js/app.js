@@ -100,6 +100,8 @@ class App extends React.Component {
         owner: '',
         ownerPicture: '',
         shownRecipes: this.state.recipes,
+        showFilter: false,
+        showForm: false,
       })
     })
   }
