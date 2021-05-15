@@ -249,7 +249,8 @@ class App extends React.Component {
             <img className="navPicture" src={this.state.ownerPicture} alt={this.state.owner}/>
             <button className="btn btn-success filterButton" onClick={this.showFilter} >☰ Filter Recipes</button>
             <button className="btn addButton" onClick={this.showForm}>Add Recipe</button>
-            <button className="btn btn-danger logoutButton" onClick={this.deleteSession} type="submit">Log Out</button>
+            <button className="btn btn-danger logoutButton"
+            onClick={this.deleteSession} type="submit">Log Out</button>
           </nav>
 
           {this.state.showFilter ?
@@ -269,7 +270,7 @@ class App extends React.Component {
               onClick={this.filterRecipesByOwner}>Show My Recipes</button>
               <button className="btn btn-light filterAllButton"
               onClick={this.componentDidMount}>Show All Recipes</button>
-              <button className="btn btn-danger closeFilterButton" onClick={this.showFilter}>Close</button>
+              <button className="btn-close btn-close-white" aria-label="Close" onClick={this.showFilter}></button>
             </div>
           : null}
 
@@ -291,35 +292,37 @@ class App extends React.Component {
             ></Create>
             : null}
 
-          <ul>
-            {this.state.shownRecipes.map((recipe) => {
-              return (
+          <div className="recipeDiv">
+            <ul className="recipeList">
+              {this.state.shownRecipes.map((recipe) => {
+                return (
 
-                <li key={recipe._id}>
+                  <li className="card recipeCard" key={recipe._id}>
 
-                  <Show
-                    currentUser={this.state.currentUser}
-                    recipe={recipe}
-                    handleSubmit={this.handleSubmit}
-                    handleChange={this.handleChange}
-                    ingredients={this.state.ingredients}
-                    updateRecipe={this.updateRecipe}
-                    addIngredient={this.addIngredient}
-                    removeIngredient={this.removeIngredient}
-                    methods={this.state.methods}
-                    addMethod={this.addMethod}
-                    removeMethod={this.removeMethod}
-                    deleteRecipe={this.deleteRecipe}
-                    title={this.state.title}
-                    duration={this.state.duration}
-                    type={this.state.type}
-                    image={this.state.image}
-                  ></Show>
+                    <Show
+                      currentUser={this.state.currentUser}
+                      recipe={recipe}
+                      handleSubmit={this.handleSubmit}
+                      handleChange={this.handleChange}
+                      ingredients={this.state.ingredients}
+                      updateRecipe={this.updateRecipe}
+                      addIngredient={this.addIngredient}
+                      removeIngredient={this.removeIngredient}
+                      methods={this.state.methods}
+                      addMethod={this.addMethod}
+                      removeMethod={this.removeMethod}
+                      deleteRecipe={this.deleteRecipe}
+                      title={this.state.title}
+                      duration={this.state.duration}
+                      type={this.state.type}
+                      image={this.state.image}
+                    ></Show>
 
-                </li>
-              )
-            })}
-          </ul>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
 
           <button onClick={() => {
             window.scroll(

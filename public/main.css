@@ -154,7 +154,7 @@ nav {
   align-items: center;
 }
 
-.filterSelect, .filterTypeButton, .filterOwnerButton, .filterAllButton, .closeFilterButton {
+.filterSelect, .filterTypeButton, .filterOwnerButton, .filterAllButton {
   font-size: 1.4em;
   border: 2px solid black;
   margin-bottom: 10%;
@@ -164,9 +164,12 @@ nav {
   margin-bottom: 20%;
 }
 
-.closeFilterButton {
-  margin-top: 10%;
-  color: ghostwhite;
+.btn-close {
+  opacity: 1;
+}
+
+.btn-close:hover {
+  opacity: 1;
 }
 
 
@@ -217,14 +220,114 @@ nav {
 }
 
 
-/* SHOW RECIPE */
+/* RECIPE CARD */
 
-.showPicture {
-  width: 10%;
+.recipeList {
+  list-style-type: none;
+  margin-top: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.recipeCard {
+  display: flex;
+  flex-basis: 70%;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  border: 3px solid black;
+  padding: 0 1% 1%;
+  margin: 3%;
+  min-width: 500px;
+}
+
+.chipDiv {
+  display: flex;
+  justify-content: flex-end;
+  margin: 4% 0;
+}
+
+.ownerChip {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  text-align: center;
+  height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+  color: ghostwhite;
+  padding: 0 12px;
+  border-radius: 16px;
+  background-color: #253D5B;
+  width: 350px;
+}
+
+.ownerChip > img {
+  float: left;
+  margin: 0 8px 0 -25px;
+  height: 75px;
+  width: 100px;
+  border-radius: 50%;
+  border: 2px solid #253D5B;
+}
+
+.imageDiv {
+  display: flex;
+  justify-content: center;
 }
 
 .showImage {
-  width: 250px;
+  width: 80%;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.showDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.showRecipeButton {
+  color: ghostwhite;
+  background-color: #253D5B;
+  border: 2px solid black;
+  font-size: 1.6em;
+  margin: 3% 0;
+}
+
+
+/* SHOW RECIPE */
+
+.recipeShow {
+  margin: 2% 0;
+}
+
+.methodH4 {
+  margin-top: 2%;
+}
+
+/* EDIT RECIPE */
+
+summary {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+
+/* DELETE RECIPE */
+
+.deleteDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.deleteRecipeButton {
+  color: ghostwhite;
+  border: 2px solid black;
+  font-size: 1.4em;
+  margin: 3% 0;
 }
 
 
