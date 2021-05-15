@@ -20,3 +20,6 @@ We initially set out to create a full-CRUD MERN app that would allow users to jo
 * The new recipe form and edit recipe forms are linked by the React App component state such that when users enter text into one form, the other is also filled.
 * while users are currently able to filter recipes by type and by their ownership, we would like users to be able to search recipes by title as well as by owner. 
 * Additionally, we would like to add dietary considerations (e.g. vegetarian, vegan, gluten-free, etc.) to recipes and allow users to filter recipes by these tags.
+
+## Visit the Deployed App
+* https://thepotluck.herokuapp.com/
