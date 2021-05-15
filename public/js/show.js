@@ -15,12 +15,12 @@ class Show extends React.Component {
                 <div>
                     <div>
                       <h4>Recipe by: <b>{this.props.recipe.owner}</b></h4>
-                      <img src={this.props.recipe.ownerPicture} alt={this.props.recipe.owner}/>
+                      <img className="showPicture" src={this.props.recipe.ownerPicture} alt={this.props.recipe.owner}/>
                     </div>
                     <h3>{this.props.recipe.title}</h3>
                     <h4>Recipe Type: <b>{this.props.recipe.type}</b></h4>
                     <h4>Prep and Cook Time: <b>{this.props.recipe.duration}</b></h4>
-                    <img src={this.props.recipe.image} alt={this.props.recipe.title} />
+                    <img className="showImage" src={this.props.recipe.image} alt={this.props.recipe.title} />
 
                     <button className="btn btn-outline-primary" onClick={this.hideDetails}>Show Recipe</button>
 
@@ -79,12 +79,12 @@ class Show extends React.Component {
                 <div>
                   <div>
                     <h4>Recipe by: <b>{this.props.recipe.owner}</b></h4>
-                    <img src={this.props.recipe.ownerPicture} alt={this.props.recipe.owner}/>
+                    <img className="showPicture" src={this.props.recipe.ownerPicture} alt={this.props.recipe.owner}/>
                   </div>
                   <h3>{this.props.recipe.title}</h3>
                   <h4>Recipe Type: <b>{this.props.recipe.type}</b></h4>
                   <h4>Prep and Cook Time: <b>{this.props.recipe.duration}</b></h4>
-                  <img src={this.props.recipe.image} alt={this.props.recipe.title} />
+                  <img className="showImage" src={this.props.recipe.image} alt={this.props.recipe.title} />
 
                   <button className="btn btn-outline-primary" onClick={this.hideDetails}>Show Recipe</button>
                 </div>

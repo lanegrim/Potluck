@@ -19,6 +19,7 @@ class App extends React.Component {
     },
     currentUser: {},
     showForm: false,
+    showFilter: false,
   }
 
   handleChange = (event) => {
@@ -182,6 +183,7 @@ class App extends React.Component {
         this.setState({
           shownRecipes: filteredRecipes,
           filterType: '',
+          showFilter: false,
         })
       }
   }
@@ -195,14 +197,23 @@ class App extends React.Component {
     }
     this.setState({
       shownRecipes: filteredRecipes,
+      showFilter: false,
     })
   }
+
+  showFilter = (event) => {
+    this.setState({
+      showFilter: !this.state.showFilter
+    })
+  }
+
 
   componentDidMount = () => {
     axios.get('/recipes').then((response) => {
       this.setState({
         recipes: response.data.reverse(),
-        shownRecipes: response.data
+        shownRecipes: response.data,
+        showFilter: false,
       })
     })
   }
@@ -229,33 +240,37 @@ class App extends React.Component {
 
         <div>
 
+          <header>
+            <h1 className="headerH1">P<img className="headerTomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato"/>tluck</h1>
+          </header>
           <nav>
             <img className="navPicture" src={this.state.ownerPicture} alt={this.state.owner}/>
-            <h1 className="navH1">P<img className="navTomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato"/>tluck</h1>
+            <button className="btn btn-success filterButton" onClick={this.showFilter} >☰ Filter Recipes</button>
+            <button className="btn btn-primary addButton" onClick={this.showForm}>Add Recipe</button>
             <button className="btn btn-danger logoutButton" onClick={this.deleteSession} type="submit">Log Out</button>
           </nav>
 
-          <header>
+          {this.state.showFilter ?
+            <div className="filterDiv">
+              <form className="filterForm" onSubmit={this.filterRecipesByType}>
+                <select className="form-select filterSelect" type="text" id="filterType"
+                onChange={this.handleChange} value={this.state.filterType}>
+                  <option defaultValue>Filter by Recipe Type</option>
+                  <option value="Main">Main</option>
+                  <option value="Side">Side</option>
+                  <option value="Dessert">Dessert</option>
+                  <option value="Snack">Snack</option>
+                </select>
+                <button className="btn btn-light filterType" type="submit">Filter</button>
+              </form>
+              <button className="btn btn-light filterOwner"
+              onClick={this.filterRecipesByOwner}>Show My Recipes</button>
+              <button className="btn btn-light filterAll"
+              onClick={this.componentDidMount}>Show All Recipes</button>
+              <button className="btn btn-danger closeFilter" onClick={this.showFilter}>Close</button>
+            </div>
+          : null}
 
-          <form onSubmit={this.filterRecipesByType}>
-            <select className="form-select" type="text" id="filterType"
-            onChange={this.handleChange} value={this.state.filterType}>
-              <option defaultValue>Filter by Recipe Type</option>
-              <option value="Main">Main</option>
-              <option value="Side">Side</option>
-              <option value="Dessert">Dessert</option>
-              <option value="Snack">Snack</option>
-            </select>
-            <button type="submit">Filter</button>
-          </form>
-
-          <button onClick={this.filterRecipesByOwner}>Show My Recipes</button>
-
-          <button onClick={this.componentDidMount}>Show All Recipes</button>
-
-          </header>
-
-          <button onClick={this.showForm} className="btn btn-primary">Add Recipe</button>
           {this.state.showForm ?
             <Create
               currentUser={this.state.currentUser}
