@@ -323,16 +323,14 @@ class App extends React.Component {
               })}
             </ul>
           </div>
-
-          <button onClick={() => {
-            window.scroll(
+          <button className="btn scrollTopButton"
+          onClick={() => { window.scroll(
               {
                 top: 0,
                 behavior: "smooth"
               }
             )
           }}>Scroll to Top</button>
-
         </div>
       )
     }

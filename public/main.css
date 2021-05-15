@@ -334,6 +334,20 @@ summary {
   margin: 3% 0;
 }
 
+/* SCROLL TO TOP BUTTON */
+
+.scrollTopButton {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  z-index: 1;
+  color: ghostwhite;
+  background-color: #253D5B;
+  border: 2px solid black;
+}
+
 
 /* DEFAULT FORMS */
 
