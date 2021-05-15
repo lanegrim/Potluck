@@ -248,7 +248,7 @@ class App extends React.Component {
           <nav>
             <img className="navPicture" src={this.state.ownerPicture} alt={this.state.owner}/>
             <button className="btn btn-success filterButton" onClick={this.showFilter} >☰ Filter Recipes</button>
-            <button className="btn btn-primary addButton" onClick={this.showForm}>Add Recipe</button>
+            <button className="btn addButton" onClick={this.showForm}>Add Recipe</button>
             <button className="btn btn-danger logoutButton" onClick={this.deleteSession} type="submit">Log Out</button>
           </nav>
 
@@ -263,13 +263,13 @@ class App extends React.Component {
                   <option value="Dessert">Dessert</option>
                   <option value="Snack">Snack</option>
                 </select>
-                <button className="btn btn-light filterType" type="submit">Filter</button>
+                <button className="btn btn-light filterTypeButton" type="submit">Filter</button>
               </form>
-              <button className="btn btn-light filterOwner"
+              <button className="btn btn-light filterOwnerButton"
               onClick={this.filterRecipesByOwner}>Show My Recipes</button>
-              <button className="btn btn-light filterAll"
+              <button className="btn btn-light filterAllButton"
               onClick={this.componentDidMount}>Show All Recipes</button>
-              <button className="btn btn-danger closeFilter" onClick={this.showFilter}>Close</button>
+              <button className="btn btn-danger closeFilterButton" onClick={this.showFilter}>Close</button>
             </div>
           : null}
 

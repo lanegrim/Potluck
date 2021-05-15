@@ -124,6 +124,10 @@ nav {
   border: 2px solid black;
 }
 
+.addButton {
+  background-color: #253D5B;
+}
+
 
 /* SIDEBAR / FILTER BUTTONS */
 
@@ -131,7 +135,7 @@ nav {
   display: flex;
   flex-flow: column;
   align-items: center;
-  background-color: #253D5B;
+  background-color: rgba(37, 61, 91, .8);
   min-width: 300px;
   width: 15%;
   height: 100%;
@@ -150,23 +154,68 @@ nav {
   align-items: center;
 }
 
-.filterSelect, .filterType, .filterOwner, .filterAll, .closeFilter {
+.filterSelect, .filterTypeButton, .filterOwnerButton, .filterAllButton, .closeFilterButton {
   font-size: 1.4em;
   border: 2px solid black;
   margin-bottom: 10%;
 }
 
-.filterType {
+.filterTypeButton {
   margin-bottom: 20%;
 }
 
-.closeFilter {
+.closeFilterButton {
   margin-top: 10%;
+  color: ghostwhite;
 }
 
-.closeFilter {
-  justify-self: flex-end;
+
+/* CREATE RECIPE */
+
+.addDiv {
+  display: flex;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
 }
+
+.addRecipe {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.ingredients, .methods {
+  margin-bottom: 2%;
+}
+
+.dynamicButtons {
+  margin-bottom: 24px;
+}
+
+.addIngredientButton, .addMethodButton, .removeIngredientButton, .removeMethodButton {
+  color: ghostwhite;
+  border: 2px solid black;
+  margin-right: 5%;
+}
+
+.addIngredientButton, .addMethodButton {
+  background-color: #253D5B;
+}
+
+
+.submitDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.submitRecipeButton {
+  color: ghostwhite;
+  border: 2px solid black;
+  font-size: 1.6em;
+  margin: 3% 0;
+}
+
 
 /* SHOW RECIPE */
 
@@ -225,6 +274,7 @@ button, .btn:active {
 
 .btn:hover {
   border: 2px solid black;
+  background-color: ghostwhite;
   color: black;
   font-weight: bold;
 }
