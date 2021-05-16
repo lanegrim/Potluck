@@ -18,6 +18,7 @@ We initially set out to create a full-CRUD MERN app that would allow users to jo
 * When editing the same recipe multiple times in a row, if a user fills a text input by pasting text or autofilling and the text matches what was last entered into that input, the onChange listener does not detect the text.
 * We attempted to have a successful user registration render the log-in form and remove the registration form from the page, but were unable to have the submission of the registration form perform multiple functions successfully.
 * The new recipe form and edit recipe forms are linked by the React App component state such that when users enter text into one form, the other is also filled.
+* We would also like the add and edit forms to automatically collapse once users have submitted them.
 * while users are currently able to filter recipes by type and by their ownership, we would like users to be able to search recipes by title as well as by owner. 
 * Additionally, we would like to add dietary considerations (e.g. vegetarian, vegan, gluten-free, etc.) to recipes and allow users to filter recipes by these tags.
 
