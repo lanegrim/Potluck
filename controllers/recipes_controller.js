@@ -20,6 +20,9 @@ recipes.get('/seed', (req, res) => {
 });
 
 recipes.put('/:id', (req, res) => {
+  if (!req.body.image.includes("https://")) {
+    req.body.image = "https://www.medline.com/media/spc/300x300/48x48/GCO01082320.jpg"
+  }
     Recipe.findByIdAndUpdate(
         req.params.id,
         req.body,
@@ -51,6 +54,9 @@ recipes.get('/', (req, res) => {
 });
 
 recipes.post('/', (req, res) => {
+  if (!req.body.image.includes("https://")) {
+    req.body.image = "https://www.medline.com/media/spc/300x300/48x48/GCO01082320.jpg"
+  }
     Recipe.create(req.body, (err, createdRecipe) => {
         Recipe.find({}, (err, foundRecipes) => {
             if (err) {

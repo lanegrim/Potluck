@@ -19,6 +19,7 @@ class App extends React.Component {
     },
     currentUser: {},
     showForm: false,
+    showFilter: false,
   }
 
   handleChange = (event) => {
@@ -99,6 +100,8 @@ class App extends React.Component {
         owner: '',
         ownerPicture: '',
         shownRecipes: this.state.recipes,
+        showFilter: false,
+        showForm: false,
       })
     })
   }
@@ -176,33 +179,43 @@ class App extends React.Component {
     for (let i = 0; i < this.state.recipes.length; i++) {
       if (this.state.recipes[i].type === this.state.filterType) {
         filteredRecipes.push(this.state.recipes[i]);
-      };
-    };
-      if (filteredRecipes.length > 0) {
-        this.setState({
-          shownRecipes: filteredRecipes,
-          filterType: '',
-        });
-      };
-  };
+      }
+    }
+    if (filteredRecipes.length > 0) {
+      this.setState({
+        shownRecipes: filteredRecipes,
+        filterType: '',
+        showFilter: false,
+      })
+    }
+  }
 
   filterRecipesByOwner = () => {
     let filteredRecipes = []
     for (let i = 0; i < this.state.recipes.length; i++) {
       if (this.state.recipes[i].owner === this.state.currentUser.username) {
         filteredRecipes.push(this.state.recipes[i]);
-      };
-    };
+      }
+    }
     this.setState({
       shownRecipes: filteredRecipes,
-    });
-  };
+      showFilter: false,
+    })
+  }
+
+  showFilter = (event) => {
+    this.setState({
+      showFilter: !this.state.showFilter
+    })
+  }
+
 
   componentDidMount = () => {
     axios.get('/recipes').then((response) => {
       this.setState({
         recipes: response.data.reverse(),
-        shownRecipes: response.data
+        shownRecipes: response.data,
+        showFilter: false,
       })
     })
   }
@@ -211,7 +224,11 @@ class App extends React.Component {
     if (Object.keys(this.state.currentUser).length === 0) {
       return (
         <div>
-          <h1>Potluck</h1>
+          <div className="logo">
+            <h1 className="logoH1">P<img className="tomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato" />tluck</h1>
+            <h4 className="logoH4"><i>A Food-Focused Recipe-Sharing Network</i></h4>
+            <h2 className="logoH2">CREATE • SHARE • ENJOY</h2>
+          </div>
           <Users
             userInput={this.state.userInput}
             handleUser={this.handleUser}
@@ -225,33 +242,38 @@ class App extends React.Component {
 
         <div>
 
+          <header>
+            <h1 className="headerH1">P<img className="headerTomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato" />tluck</h1>
+          </header>
           <nav>
-            <h1>Potluck</h1>
-            <h2>Hello, {this.state.currentUser.username}</h2>
-            <button className="btn btn-danger" onClick={this.deleteSession} type="submit">Log Out</button>
+            <img className="navPicture" src={this.state.ownerPicture} alt={this.state.owner} />
+            <button className="btn btn-success filterButton" onClick={this.showFilter} >☰ Filter Recipes</button>
+            <button className="btn addButton" onClick={this.showForm}>Add Recipe</button>
+            <button className="btn btn-danger logoutButton"
+              onClick={this.deleteSession} type="submit">Log Out</button>
           </nav>
 
-          <header>
+          {this.state.showFilter ?
+            <div className="filterDiv">
+              <form className="filterForm" onSubmit={this.filterRecipesByType}>
+                <select className="form-select filterSelect" type="text" id="filterType"
+                  onChange={this.handleChange} value={this.state.filterType}>
+                  <option defaultValue>Filter by Recipe Type</option>
+                  <option value="Main">Main</option>
+                  <option value="Side">Side</option>
+                  <option value="Dessert">Dessert</option>
+                  <option value="Snack">Snack</option>
+                </select>
+                <button className="btn btn-light filterTypeButton" type="submit">Filter</button>
+              </form>
+              <button className="btn btn-light filterOwnerButton"
+                onClick={this.filterRecipesByOwner}>Show My Recipes</button>
+              <button className="btn btn-light filterAllButton"
+                onClick={this.componentDidMount}>Show All Recipes</button>
+              <button className="btn-close btn-close-white" aria-label="Close" onClick={this.showFilter}></button>
+            </div>
+            : null}
 
-          <form onSubmit={this.filterRecipesByType}>
-            <select className="form-select" type="text" id="filterType"
-            onChange={this.handleChange} value={this.state.filterType}>
-              <option defaultValue>Filter by Recipe Type</option>
-              <option value="Main">Main</option>
-              <option value="Side">Side</option>
-              <option value="Dessert">Dessert</option>
-              <option value="Snack">Snack</option>
-            </select>
-            <button type="submit">Filter</button>
-          </form>
-
-          <button onClick={this.filterRecipesByOwner}>Show My Recipes</button>
-
-          <button onClick={this.componentDidMount}>Show All Recipes</button>
-
-          </header>
-
-          <button onClick={this.showForm} className="btn btn-primary">Add Recipe</button>
           {this.state.showForm ?
             <Create
               currentUser={this.state.currentUser}
@@ -270,47 +292,46 @@ class App extends React.Component {
             ></Create>
             : null}
 
-          <h2>ALL RECIPES</h2>
+          <div className="recipeDiv">
+            <ul className="recipeList">
+              {this.state.shownRecipes.map((recipe) => {
+                return (
 
-          <ul>
-            {this.state.shownRecipes.map((recipe) => {
-              return (
+                  <li className="card recipeCard" key={recipe._id}>
 
-                <li key={recipe._id}>
+                    <Show
+                      currentUser={this.state.currentUser}
+                      recipe={recipe}
+                      handleSubmit={this.handleSubmit}
+                      handleChange={this.handleChange}
+                      ingredients={this.state.ingredients}
+                      updateRecipe={this.updateRecipe}
+                      addIngredient={this.addIngredient}
+                      removeIngredient={this.removeIngredient}
+                      methods={this.state.methods}
+                      addMethod={this.addMethod}
+                      removeMethod={this.removeMethod}
+                      deleteRecipe={this.deleteRecipe}
+                      title={this.state.title}
+                      duration={this.state.duration}
+                      type={this.state.type}
+                      image={this.state.image}
+                    ></Show>
 
-                  <Show
-                    currentUser={this.state.currentUser}
-                    recipe={recipe}
-                    handleSubmit={this.handleSubmit}
-                    handleChange={this.handleChange}
-                    ingredients={this.state.ingredients}
-                    updateRecipe={this.updateRecipe}
-                    addIngredient={this.addIngredient}
-                    removeIngredient={this.removeIngredient}
-                    methods={this.state.methods}
-                    addMethod={this.addMethod}
-                    removeMethod={this.removeMethod}
-                    deleteRecipe={this.deleteRecipe}
-                    title={this.state.title}
-                    duration={this.state.duration}
-                    type={this.state.type}
-                    image={this.state.image}
-                  ></Show>
-
-                </li>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+          <button className="btn scrollTopButton"
+            onClick={() => {
+              window.scroll(
+                {
+                  top: 0,
+                  behavior: "smooth"
+                }
               )
-            })}
-          </ul>
-
-          <button onClick={() => {
-            window.scroll(
-              {
-                top: 0,
-                behavior: "smooth"
-              }
-            )
-          }}>Scroll to Top</button>
-
+            }}>Scroll to Top</button>
         </div>
       )
     }
