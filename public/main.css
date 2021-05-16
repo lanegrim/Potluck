@@ -406,13 +406,13 @@ button, .btn:active {
 
 
 /* MEDIA QUERIES */
-/* Why does it seem I can't make the recipe cards wider? */
+
 /* @media(max-width: 450px){
   .recipeList {
-    width: 100%;
+    flex-basis: 100%;
   }
   .recipeCard {
-    width: 100%;
+    flex-basis: 100%;
   }
 } */
 
