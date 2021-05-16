@@ -9,7 +9,7 @@ A full-CRUD recipe journaling and discovery app built by Lane Grimaud and Brando
 * Database:
   * Mongo DB Atlas, accessed with Mongoose
 * Front-End:
-  * React.JS
+  * HTML, CSS, & React.JS
 
 ## Approach
 We initially set out to create a full-CRUD MERN app that would allow users to journal their personal recipes and discover others'. This evolved throughout development as we implemented authentication and limited users' access to editing and deleting functionality. On the surface, Potluck remains a resource for home chefs to catalogue and share their favorite recipes. From a development standpoint, however, this app is an exercise in developing complex, dynamic forms in React, and the relationship between these forms and mongoose schemata.
