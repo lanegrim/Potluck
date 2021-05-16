@@ -181,13 +181,13 @@ class App extends React.Component {
         filteredRecipes.push(this.state.recipes[i]);
       }
     }
-      if (filteredRecipes.length > 0) {
-        this.setState({
-          shownRecipes: filteredRecipes,
-          filterType: '',
-          showFilter: false,
-        })
-      }
+    if (filteredRecipes.length > 0) {
+      this.setState({
+        shownRecipes: filteredRecipes,
+        filterType: '',
+        showFilter: false,
+      })
+    }
   }
 
   filterRecipesByOwner = () => {
@@ -225,8 +225,8 @@ class App extends React.Component {
       return (
         <div>
           <div className="logo">
-            <h1 className="logoH1">P<img className="tomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato"/>tluck</h1>
-            <h4 className="logoH4"><i>a food-focused recipe sharing network</i></h4>
+            <h1 className="logoH1">P<img className="tomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato" />tluck</h1>
+            <h4 className="logoH4"><i>A Food-Focused Recipe-Sharing Network</i></h4>
             <h2 className="logoH2">CREATE • SHARE • ENJOY</h2>
           </div>
           <Users
@@ -243,21 +243,21 @@ class App extends React.Component {
         <div>
 
           <header>
-            <h1 className="headerH1">P<img className="headerTomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato"/>tluck</h1>
+            <h1 className="headerH1">P<img className="headerTomato" src="https://i.imgur.com/RTQfvZV.png" alt="tomato" />tluck</h1>
           </header>
           <nav>
-            <img className="navPicture" src={this.state.ownerPicture} alt={this.state.owner}/>
+            <img className="navPicture" src={this.state.ownerPicture} alt={this.state.owner} />
             <button className="btn btn-success filterButton" onClick={this.showFilter} >☰ Filter Recipes</button>
             <button className="btn addButton" onClick={this.showForm}>Add Recipe</button>
             <button className="btn btn-danger logoutButton"
-            onClick={this.deleteSession} type="submit">Log Out</button>
+              onClick={this.deleteSession} type="submit">Log Out</button>
           </nav>
 
           {this.state.showFilter ?
             <div className="filterDiv">
               <form className="filterForm" onSubmit={this.filterRecipesByType}>
                 <select className="form-select filterSelect" type="text" id="filterType"
-                onChange={this.handleChange} value={this.state.filterType}>
+                  onChange={this.handleChange} value={this.state.filterType}>
                   <option defaultValue>Filter by Recipe Type</option>
                   <option value="Main">Main</option>
                   <option value="Side">Side</option>
@@ -267,12 +267,12 @@ class App extends React.Component {
                 <button className="btn btn-light filterTypeButton" type="submit">Filter</button>
               </form>
               <button className="btn btn-light filterOwnerButton"
-              onClick={this.filterRecipesByOwner}>Show My Recipes</button>
+                onClick={this.filterRecipesByOwner}>Show My Recipes</button>
               <button className="btn btn-light filterAllButton"
-              onClick={this.componentDidMount}>Show All Recipes</button>
+                onClick={this.componentDidMount}>Show All Recipes</button>
               <button className="btn-close btn-close-white" aria-label="Close" onClick={this.showFilter}></button>
             </div>
-          : null}
+            : null}
 
           {this.state.showForm ?
             <Create
@@ -324,13 +324,14 @@ class App extends React.Component {
             </ul>
           </div>
           <button className="btn scrollTopButton"
-          onClick={() => { window.scroll(
-              {
-                top: 0,
-                behavior: "smooth"
-              }
-            )
-          }}>Scroll to Top</button>
+            onClick={() => {
+              window.scroll(
+                {
+                  top: 0,
+                  behavior: "smooth"
+                }
+              )
+            }}>Scroll to Top</button>
         </div>
       )
     }

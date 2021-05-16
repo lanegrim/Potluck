@@ -5,6 +5,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-position: left;
+  padding-bottom: 10vh;
 }
 
 
@@ -37,7 +38,7 @@ body {
   font-family: 'Oswald', sans-serif;
   color: #000;
   font-size: 30px;
-  background-color: rgba(255, 255, 255, .3)
+  /* background-color: rgba(255, 255, 255, .3) */
 }
 
 .tomato {
@@ -225,6 +226,7 @@ nav {
 .recipeList {
   list-style-type: none;
   margin-top: 5%;
+  padding-left: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -245,8 +247,8 @@ nav {
 
 .chipDiv {
   display: flex;
-  justify-content: flex-end;
-  margin: 4% 0;
+  justify-content: flex-start;
+  margin: 4% 4%;
 }
 
 .ownerChip {
@@ -259,6 +261,7 @@ nav {
   font-weight: bold;
   color: ghostwhite;
   padding: 0 12px;
+  margin: 10px 0;
   border-radius: 16px;
   background-color: #253D5B;
   width: 350px;
@@ -268,9 +271,10 @@ nav {
   float: left;
   margin: 0 8px 0 -25px;
   height: 75px;
-  width: 100px;
+  width: 75px;
   border-radius: 50%;
   border: 2px solid #253D5B;
+  object-fit: cover;
 }
 
 .card-header {
@@ -402,12 +406,16 @@ button, .btn:active {
 
 
 /* MEDIA QUERIES */
+/* Why does it seem I can't make the recipe cards wider? */
+/* @media(max-width: 450px){
+  .recipeList {
+    width: 100%;
+  }
+  .recipeCard {
+    width: 100%;
+  }
+} */
 
-@media screen and (max-width: 700px) {
-
-
-
-}
 
 @media screen and (max-width: 800px) {
 
