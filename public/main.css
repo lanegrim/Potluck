@@ -225,16 +225,18 @@ nav {
 
 .recipeList {
   list-style-type: none;
-  margin-top: 5%;
+  width: 100%;
   padding-left: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 5% auto;
 }
 
 .recipeCard {
   display: flex;
-  flex-basis: 70%;
+  flex-basis: 100%;
   flex-flow: column;
   justify-content: space-between;
   align-items: center;
@@ -295,6 +297,10 @@ nav {
 .showDiv {
   display: flex;
   justify-content: center;
+}
+
+.showCard {
+  width: 95%;
 }
 
 .showRecipeButton {
@@ -368,6 +374,7 @@ legend {
   padding: 0 30px;
   margin: 0;
   border: 3px solid black;
+  border-radius: 10px;
   background-color: #E52029;
   color: ghostwhite;
   width: auto;
